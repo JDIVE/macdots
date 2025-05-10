@@ -71,14 +71,17 @@ setup_macos_defaults() {
   # Finder: show status bar
   defaults write com.apple.finder ShowStatusBar -bool true
 
+  # Finder: ensure sidebar is visible
+  defaults write com.apple.finder ShowSidebar -bool true
+
   # Finder: allow text selection in Quick Look
   defaults write com.apple.finder QLEnableTextSelection -bool true
 
   # Finder: show hidden files by default
   defaults write com.apple.finder AppleShowAllFiles -bool true
 
-  # Finder: use list view by default
-  defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+  # Finder: use Column view by default (clmv=Column, Nlsv=List, icnv=Icon, Flwv=Cover Flow/Gallery)
+  defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
   # Finder: disable the warning when changing a file extension
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
@@ -91,6 +94,12 @@ setup_macos_defaults() {
 
   # Finder: disable window animations and Get Info animations
   defaults write com.apple.finder DisableAllAnimations -bool true
+
+  # Set new Finder windows to open to the home folder
+  # PfHm = Home folder, PfDe = Desktop, PfDo = Documents, PfAF = All My Files, Pfనె = Recents
+  # For other specific folders: PfLo = Path to folder, NewWindowTargetPath = file:///path/to/folder/
+  defaults write com.apple.finder NewWindowTarget -string "PfHm"
+  defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
   print_message "${BLUE}" "⌨️" "Configuring keyboard and trackpad..."
   # Disable the "Are you sure you want to open this application?" dialog
@@ -484,17 +493,17 @@ main() {
   if command -v dockutil &> /dev/null; then
     dockutil --remove all --no-restart
     dockutil --add '/Applications/Notion.app' --no-restart # User specified
-    dockutil --add '/Applications/Notion Mail.app' --no-restart # User specified - VERIFY PATH & INSTALLATION
+    dockutil --add '/Applications/Notion Mail.app' --no-restart # User specified
     dockutil --add '/Applications/Notion Calendar.app' --no-restart # User specified
     dockutil --add '/Applications/Arc.app' --no-restart
-    dockutil --add '/Applications/Claude.app' --no-restart # User specified - VERIFY PATH & INSTALLATION
+    dockutil --add '/Applications/Claude.app' --no-restart # User specified
     dockutil --add '/System/Applications/Music.app' --no-restart # User specified
-    dockutil --add '/Applications/Superwhisper.app' --no-restart # User specified - VERIFY PATH & INSTALLATION
+    dockutil --add '/Applications/Superwhisper.app' --no-restart # User specified
     dockutil --add '/Applications/Warp.app' --no-restart # User specified
     dockutil --add '/Applications/Readwise Reader.app' --no-restart # User specified (Readwise Reader)
     dockutil --add '/Applications/Visual Studio Code.app' --no-restart # User specified
-    dockutil --add '/Applications/Linear.app' --no-restart # User specified (Linear) - VERIFY PATH & INSTALLATION
-    dockutil --add '/Applications/Windsurf Next.app' --no-restart # User specified - VERIFY PATH & INSTALLATION
+    dockutil --add '/Applications/Linear.app' --no-restart # User specified (Linear)
+    dockutil --add '/Applications/Windsurf Next.app' --no-restart # User specified
     # Add Downloads folder. Add other folders/stacks as needed.
     dockutil --add '~/Downloads' --view grid --display folder --sort dateadded --no-restart
    
