@@ -114,3 +114,4 @@ var/
 ssh/.ssh/id_*
 ssh/.ssh/backup/
 !ssh/.ssh/.gitkeep
+ssh/.ssh/known_hosts
