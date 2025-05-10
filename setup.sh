@@ -276,11 +276,15 @@ setup_macos_defaults() {
 install_arc_extensions() {
   print_message "${BLUE}" "🧩" "Setting up Arc browser extensions..."
 
-  # Check if Arc is installed
-  if [ ! -d "/Applications/Arc.app" ]; then
+  # Check if Arc is installed (check both standard and Homebrew locations)
+  if [ ! -d "/Applications/Arc.app" ] && [ ! -d "$(brew --prefix)/Caskroom/arc" ]; then
     print_message "${YELLOW}" "⚠️" "Arc browser is not installed. Skipping extension setup."
     return
   fi
+
+  # Wait a moment to ensure Arc has completed its first-run setup
+  print_message "${BLUE}" "⏳" "Waiting for Arc to complete initialization..."
+  sleep 3
 
   # Arc extensions directory
   ARC_EXTENSIONS_DIR="$HOME/Library/Application Support/Arc/User Data/Default/Extensions"
@@ -322,12 +326,8 @@ install_arc_extensions() {
   # List of essential extensions to install
   # Format: "extension_id extension_name"
   extensions=(
-    "cjpalhdlnbpafiamejdnhcphjbkeiagm uBlock Origin"
     "nngceckbapebfimnlniiiahkandclblb Bitwarden"
-    "eimadpbcbfnmbkopoojfekhnkhdbieeh Dark Reader"
-    "dbepggeogbaibhgnhhndojpepiihcmeb Vimium"
-    "kbfnbcaeplbcioakkpcpgfkobkghlhen Grammarly"
-    "ldgfbffkinooeloadekpmfoklnobpien Raindrop.io"
+    "hoomijgfioaodagdlhjfmllddfgkhioh Raycast Companion"
   )
 
   # Install each extension
@@ -339,6 +339,59 @@ install_arc_extensions() {
 
   print_message "${GREEN}" "✅" "Arc browser extensions setup complete."
   print_message "${YELLOW}" "📝" "Note: You may need to restart Arc browser for all extensions to take effect."
+}
+
+# Configure Git user settings
+configure_git() {
+  print_message "${BLUE}" "🔧" "Configuring Git settings..."
+
+  # Check if Git is installed
+  if ! command -v git &> /dev/null; then
+    print_message "${YELLOW}" "⚠️" "Git is not installed. Skipping Git configuration."
+    return
+  fi
+
+  # Check if Git user name is already configured
+  current_name=$(git config --global user.name || echo "")
+  current_email=$(git config --global user.email || echo "")
+
+  if [[ -n "$current_name" && -n "$current_email" ]]; then
+    print_message "${BLUE}" "ℹ️" "Current Git configuration:"
+    print_message "${BLUE}" "ℹ️" "Name: $current_name"
+    print_message "${BLUE}" "ℹ️" "Email: $current_email"
+
+    read -p "Do you want to update your Git configuration? (y/n): " -n 1 -r UPDATE_GIT
+    echo
+
+    if [[ ! $UPDATE_GIT =~ ^[Yy]$ ]]; then
+      print_message "${GREEN}" "✅" "Keeping existing Git configuration."
+      return
+    fi
+  fi
+
+  # Prompt for Git user name and email
+  print_message "${BLUE}" "👤" "Please enter your Git user information:"
+  read -p "Name: " git_name
+  read -p "Email: " git_email
+
+  # Validate input
+  if [[ -z "$git_name" || -z "$git_email" ]]; then
+    print_message "${RED}" "❌" "Name and email cannot be empty. Git configuration skipped."
+    return
+  fi
+
+  # Configure Git
+  git config --global user.name "$git_name"
+  git config --global user.email "$git_email"
+
+  # Configure additional useful Git settings
+  git config --global init.defaultBranch main
+  git config --global pull.rebase false
+  git config --global core.editor "nvim"
+
+  print_message "${GREEN}" "✅" "Git configured successfully."
+  print_message "${BLUE}" "ℹ️" "Name: $git_name"
+  print_message "${BLUE}" "ℹ️" "Email: $git_email"
 }
 
 # Main function to run the setup
@@ -368,13 +421,23 @@ main() {
   echo
   read -p "Configure macOS defaults? (y/n): " -n 1 -r SETUP_MACOS
   echo
+  read -p "Configure Git user settings? (y/n): " -n 1 -r CONFIGURE_GIT
+  echo
   read -p "Install Arc browser extensions? (y/n): " -n 1 -r INSTALL_ARC_EXTENSIONS
   echo
 
   # Install selected components
   [[ $INSTALL_SOFTWARE =~ ^[Yy]$ ]] && install_software
   [[ $SETUP_MACOS =~ ^[Yy]$ ]] && setup_macos_defaults
-  [[ $INSTALL_ARC_EXTENSIONS =~ ^[Yy]$ ]] && install_arc_extensions
+  [[ $CONFIGURE_GIT =~ ^[Yy]$ ]] && configure_git
+
+  # Install Arc extensions after software installation to ensure Arc is installed
+  if [[ $INSTALL_SOFTWARE =~ ^[Yy]$ && $INSTALL_ARC_EXTENSIONS =~ ^[Yy]$ ]]; then
+    print_message "${BLUE}" "ℹ️" "Installing Arc extensions after software installation..."
+    install_arc_extensions
+  elif [[ $INSTALL_ARC_EXTENSIONS =~ ^[Yy]$ ]]; then
+    install_arc_extensions
+  fi
 
   # Run the dotfiles install script
   print_message "${BLUE}" "🔗" "Setting up dotfiles..."

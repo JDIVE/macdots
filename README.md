@@ -62,7 +62,8 @@ The setup script will:
 - Install Homebrew (if not already installed)
 - Install essential command-line tools and applications from the Brewfile
 - Configure sensible macOS defaults
-- Install Arc browser extensions (uBlock Origin, Bitwarden, Dark Reader, etc.)
+- Set up Git with your name and email (interactive prompt)
+- Install Arc browser extensions (Bitwarden and Raycast Companion)
 - Set up your dotfiles using the install.sh script
 
 ### Dotfiles Only
@@ -123,12 +124,9 @@ This dotfiles repository integrates many modern replacements for traditional Uni
 
 ### Arc Browser Enhancement
 - Automated installation of essential extensions:
-  - uBlock Origin: Ad blocker
   - Bitwarden: Password manager
-  - Dark Reader: Dark mode for all websites
-  - Vimium: Keyboard navigation
-  - Grammarly: Grammar checker
-  - Raindrop.io: Bookmark manager
+  - Raycast Companion: Integration with Raycast launcher
+- Smart installation that respects Homebrew installation order
 - Easy to customize with your preferred extensions
 
 ## Customization
