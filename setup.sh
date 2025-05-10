@@ -97,8 +97,8 @@ setup_macos_defaults() {
   defaults write com.apple.LaunchServices LSQuarantine -bool false
 
   # Trackpad: enable tap to click
-  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true # For Bluetooth trackpads
+  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 # For built-in trackpads and Magic Mouse
 
   # Trackpad: enable three finger drag
   defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
@@ -110,15 +110,6 @@ setup_macos_defaults() {
 
   # Disable auto-correct
   defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
-  # Disable automatic capitalization
-  defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-
-  # Disable smart dashes
-  defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-
-  # Disable automatic period substitution
-  defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
   # Disable smart quotes
   defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
@@ -144,9 +135,6 @@ setup_macos_defaults() {
   # Expand print panel by default
   defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
   defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-  # Disable the "Are you sure you want to open this application?" dialog
-  defaults write com.apple.LaunchServices LSQuarantine -bool false
 
   # Disable Resume system-wide
   defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
@@ -246,21 +234,11 @@ setup_macos_defaults() {
   sudo tmutil disablelocal
 
   print_message "${BLUE}" "🧹" "Configuring cleanup and maintenance..."
-  # Disable the "Are you sure you want to open this application?" dialog
-  defaults write com.apple.LaunchServices LSQuarantine -bool false
-
   # Disable Notification Center and remove the menu bar icon
   launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
 
   # Disable automatic termination of inactive apps
   defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
-
-  # Disable auto-correct
-  defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
-  # Disable smart quotes and smart dashes
-  defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-  defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
   print_message "${BLUE}" "🔄" "Restarting affected applications..."
   # Restart affected applications
@@ -341,6 +319,38 @@ install_arc_extensions() {
   print_message "${YELLOW}" "📝" "Note: You may need to restart Arc browser for all extensions to take effect."
 }
 
+# Function to install global npm packages
+install_npm_globals() {
+  print_message "${BLUE}" "📦" "Installing global npm packages..."
+
+  if ! command_exists npm; then
+    print_message "${RED}" "❌" "npm is not installed. Skipping global npm package installation."
+    print_message "${YELLOW}" "💡" "Ensure Node.js is installed via Homebrew (e.g., 'brew install node')."
+    return 1
+  fi
+
+  # Install Claude Code CLI
+  print_message "${BLUE}" "💻" "Installing Claude Code CLI (@anthropic-ai/claude-code)..."
+  if npm list -g --depth=0 | grep -q '@anthropic-ai/claude-code'; then
+    print_message "${GREEN}" "✅" "Claude Code CLI is already installed."
+  else
+    if npm install -g @anthropic-ai/claude-code; then
+      print_message "${GREEN}" "✅" "Claude Code CLI installed successfully."
+    else
+      print_message "${RED}" "❌" "Failed to install Claude Code CLI."
+    fi
+  fi
+
+  # Add other global npm packages here if needed in the future
+  # Example:
+  # print_message "${BLUE}" "📦" "Installing another-package..."
+  # if ! npm list -g --depth=0 | grep -q 'another-package'; then
+  #   npm install -g another-package
+  # fi
+
+  print_message "${GREEN}" "✅" "Global npm package installation complete."
+}
+
 # Configure Git user settings
 configure_git() {
   print_message "${BLUE}" "🔧" "Configuring Git settings..."
@@ -398,6 +408,13 @@ configure_git() {
 main() {
   print_message "${BLUE}" "🚀" "Starting setup for a new Mac..."
 
+  # Check for sudo privileges
+  if [ "$(id -u)" -ne 0 ]; then
+    print_message "${RED}" "❌" "This script requires superuser privileges."
+    print_message "${YELLOW}" "💡" "Please run with: sudo ./setup.sh"
+    exit 1
+  fi
+
   # Install Xcode Command Line Tools if not already installed
   if ! xcode-select -p &> /dev/null; then
     print_message "${BLUE}" "🛠️" "Installing Xcode Command Line Tools..."
@@ -431,6 +448,11 @@ main() {
   [[ $SETUP_MACOS =~ ^[Yy]$ ]] && setup_macos_defaults
   [[ $CONFIGURE_GIT =~ ^[Yy]$ ]] && configure_git
 
+  # Install npm globals if software installation was chosen (as Node.js would be installed then)
+  if [[ $INSTALL_SOFTWARE =~ ^[Yy]$ ]]; then
+    install_npm_globals
+  fi
+
   # Install Arc extensions after software installation to ensure Arc is installed
   if [[ $INSTALL_SOFTWARE =~ ^[Yy]$ && $INSTALL_ARC_EXTENSIONS =~ ^[Yy]$ ]]; then
     print_message "${BLUE}" "ℹ️" "Installing Arc extensions after software installation..."
@@ -447,11 +469,8 @@ main() {
   mkdir -p ~/.ssh
   chmod 700 ~/.ssh
 
-  print_message "${GREEN}" "🚀" "Installing dotfiles..."
-  ./install.sh
-
   # Ensure the stowed SSH config has correct permissions
-  if [ -f "~/.ssh/config" ]; then
+  if [ -f "$HOME/.ssh/config" ]; then
     print_message "${GREEN}" "🔒" "Setting permissions for ~/.ssh/config..."
     chmod 600 ~/.ssh/config
   fi
