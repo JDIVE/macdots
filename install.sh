@@ -40,20 +40,34 @@ elif [ -d "$HOME/.config" ]; then
   mv "$HOME/.config" "$BACKUP_DIR/"
 fi
 
-# Backup common dotfiles
-for file in .zshrc .gitconfig .bashrc; do
-  if [ -f "$HOME/$file" ] && [ ! -L "$HOME/$file" ]; then
-    print_message "${YELLOW}" "📦" "Backing up existing $file to $BACKUP_DIR"
-    mv "$HOME/$file" "$BACKUP_DIR/"
-  elif [ -L "$HOME/$file" ]; then
-    print_message "${YELLOW}" "🔗" "Removing existing symlink for $file"
-    rm "$HOME/$file"
+# Backup common dotfiles (if they exist directly in ~ and are not symlinks)
+# We'll primarily let stow handle conflicts, but good to back up direct files if they exist and would be overwritten.
+# .zshrc and .gitattributes are now in the 'home' stow package.
+for file_in_home in .zshrc .gitattributes; do # Add other files here if they are top-level in 'home' package
+  if [ -f "$HOME/$file_in_home" ] && [ ! -L "$HOME/$file_in_home" ]; then
+    print_message "${YELLOW}" "📦" "Backing up existing $file_in_home to $BACKUP_DIR"
+    mv "$HOME/$file_in_home" "$BACKUP_DIR/"
+  elif [ -L "$HOME/$file_in_home" ]; then
+    print_message "${YELLOW}" "🔗" "Removing existing symlink for $file_in_home"
+    rm "$HOME/$file_in_home"
+  fi
+done
+
+# For other files not explicitly in stow packages that might have been previously backed up:
+for other_file in .gitconfig .bashrc; do # Add other files here if necessary
+  if [ -f "$HOME/$other_file" ] && [ ! -L "$HOME/$other_file" ]; then
+    print_message "${YELLOW}" "📦" "Backing up existing $other_file to $BACKUP_DIR"
+    mv "$HOME/$other_file" "$BACKUP_DIR/"
+  elif [ -L "$HOME/$other_file" ]; then
+    print_message "${YELLOW}" "🔗" "Removing existing symlink for $other_file"
+    rm "$HOME/$other_file"
   fi
 done
 
 # Stow it all
-print_message "${BLUE}" "🔗" "Stowing files from $(pwd) into ~"
-stow -v -t ~ .
+STOW_PACKAGES="home config ssh" # .config will be treated as 'config' by stow
+print_message "${BLUE}" "🔗" "Stowing packages: $STOW_PACKAGES from $(pwd) into ~"
+stow -v -t ~ $STOW_PACKAGES
 
 # Source the new .zshrc if using zsh
 if [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ] || [ "$SHELL" = "/usr/local/bin/zsh" ]; then

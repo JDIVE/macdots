@@ -12,7 +12,7 @@ brew "fzf"            # Fuzzy finder
 brew "ripgrep"        # Fast grep
 brew "fd"             # Fast find
 brew "bat"            # Cat with syntax highlighting
-brew "exa"            # Modern ls replacement
+# brew "exa"            # Modern ls replacement - REMOVED, eza is used
 brew "jq"             # JSON processor
 brew "yq"             # YAML processor
 brew "yazi"           # Terminal file manager
@@ -29,6 +29,8 @@ brew "curl"           # Command line tool for transferring data
 brew "rsync"          # Fast incremental file transfer
 brew "ncdu"           # Disk usage analyzer with ncurses interface
 brew "diff-so-fancy"  # Good-looking diffs
+brew "p7zip"          # 7-Zip (for .7z in extract function)
+brew "unrar"          # Unarchiver for .rar files (for extract function)
 
 # Development tools
 brew "node"           # JavaScript runtime

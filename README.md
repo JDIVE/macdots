@@ -4,28 +4,28 @@ My personal dotfiles for macOS, managed with GNU Stow. This repository provides 
 
 ## Overview
 
-This repository contains my personal configuration files (dotfiles) for various tools and applications I use on macOS. The repository structure mirrors my home directory, making it easy to understand where each file will be placed.
+This repository contains my personal configuration files (dotfiles) for various tools and applications I use on macOS. The repository is organized into "stow packages" (like `home`, `config`, `ssh`) that mirror the structure of your home directory, making it easy to manage symlinks with GNU Stow.
 
 ## What's Included
 
 ### Configuration Files
-- `.zshrc`: Enhanced shell configuration with:
+- `home/.zshrc`: Enhanced shell configuration with:
   - Modern command-line tool aliases (eza, bat, fd, etc.)
   - Extensive Git aliases and configurations
   - Docker shortcuts
   - Utility functions (extract, mkcd, weather, etc.)
   - Tool initializations (zoxide, fzf)
-- `.config/`: Configuration files for various tools
+- `config/`: (Stored in `macdots/config/`) Configuration files for various tools:
   - `nvim/`: Neovim configuration
   - `tmux/`: Tmux configuration with plugins
   - `gh/`: GitHub CLI configuration
   - `yazi/`: Yazi file manager configuration
-- `.ssh/config`: SSH configuration (without private keys)
+- `ssh/config`: (Stored in `macdots/ssh/config`) SSH configuration (without private keys)
 
 ### Scripts
 - `install.sh`: Dotfiles installation script with:
   - Automatic backup of existing configurations
-  - GNU Stow integration for symlink management
+  - GNU Stow integration for symlink management of specific packages (`home`, `config`, `ssh`)
   - Colorized output and error handling
 - `setup.sh`: Complete Mac setup script that:
   - Installs Homebrew
@@ -83,7 +83,7 @@ If you only want to install the dotfiles without setting up software:
 
 The install script will:
 - Back up any existing configuration files
-- Use GNU Stow to create symlinks from your home directory to the files in this repository
+- Use GNU Stow to create symlinks from your home directory to the files within the `home`, `config`, and `ssh` packages in this repository
 
 ## Requirements
 
@@ -134,10 +134,10 @@ This dotfiles repository integrates many modern replacements for traditional Uni
 The repository is designed to be easily customizable:
 
 - **Brewfile**: Edit to add or remove software packages
-- **.zshrc**: Modify aliases and functions to suit your workflow
+- **home/.zshrc**: Modify aliases and functions to suit your workflow
 - **setup.sh**: Adjust macOS defaults to your preferences
 
-Feel free to fork this repository and customize it to your needs. The structure mirrors your home directory, making it intuitive to understand and modify.
+Feel free to fork this repository and customize it to your needs. The stow package structure (`home/`, `config/`, `ssh/`) mirrors your home directory, making it intuitive to understand and modify.
 
 ## Usage Tips
 

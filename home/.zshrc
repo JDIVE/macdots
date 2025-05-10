@@ -121,9 +121,8 @@ alias cd="z"                                                   # Use zoxide for 
 # macOS specific
 alias showfiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
 alias hidefiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder"
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"  # Remove .DS_Store files
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder" # Flush DNS cache
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl" # Empty trash and system logs
+# alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl" # Empty trash and system logs - REMOVED DUE TO RISK
 
 # Quick folder navigation
 alias dev="cd ~/Development"
@@ -181,3 +180,21 @@ elif command -v fzf &> /dev/null; then
     source /opt/homebrew/opt/fzf/shell/completion.zsh
   fi
 fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Conditional compinit initialization (skip for Warp Terminal)
+if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
+  autoload -Uz compinit
+  if [ -n "$ZDOTDIR/.zcompdump" ]; then # Check if a zcompdump specific to ZDOTDIR exists
+    compinit -i -d "$ZDOTDIR/.zcompdump"
+  else
+    compinit -i # Fallback to default zcompdump location if specific one not found
+  fi
+  # For more aggressive caching, consider:
+  # compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump-$ZSH_VERSION"
+fi
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,

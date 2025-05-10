@@ -24,6 +24,7 @@ Icon
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+.zcompdump*
 
 # Logs and databases
 *.log
@@ -109,4 +110,3 @@ var/
 # History files
 .bash_history
 .zsh_history
-.zcompdump*
