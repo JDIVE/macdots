@@ -31,11 +31,14 @@ brew "ncdu"           # Disk usage analyzer with ncurses interface
 brew "diff-so-fancy"  # Good-looking diffs
 brew "p7zip"          # 7-Zip (for .7z in extract function)
 brew "unrar"          # Unarchiver for .rar files (for extract function)
+brew "dockutil"       # Command line tool for managing Dock items
 
 # Development tools
 brew "node"           # JavaScript runtime
 brew "python@3.12"    # Python language
-brew "lua"            # Lua language
+brew "lua"            # Lightweight, multi-paradigm scripting language
+brew "ast-grep"       # CLI tool for code structural search, lint and rewriting
+brew "uv"             # Extremely fast Python package installer and resolver, written in Rust
 brew "luajit"         # JIT compiler for Lua
 brew "tree-sitter"    # Parser generator tool
 brew "git-delta"      # Syntax-highlighting pager for git
@@ -53,26 +56,41 @@ cask "font-fira-code"
 cask "font-jetbrains-mono"
 cask "font-hack-nerd-font"
 
-# Applications - Browsers and Development
-cask "arc"                # Primary web browser
-cask "google-chrome"      # Web browser for development
-cask "visual-studio-code" # Code editor
-cask "windsurf@next"      # Windsurf IDE
-cask "warp"               # Modern terminal
+# Applications - Browsers
+cask "arc"                 # Primary web browser
+cask "google-chrome"       # Secondary browser / Dev tools
 
 # Applications - Productivity
-cask "raycast"            # Productivity and launcher
-cask "notion"             # Note-taking and organization
-cask "notion-calendar"    # Calendar app
-cask "notion-mail"        # Email client
-cask "bitwarden"          # Password manager
-cask "linear-linear"      # Project management
+cask "notion"              # Productivity suite
+cask "notion-calendar"     # Calendar app (formerly Cron)
+cask "notion-mail"         # Email client for Notion
+cask "bitwarden"           # Password manager
+cask "linear-linear"       # Project management
+cask "readwise-reader"     # Read-it-later and RSS
+cask "superwhisper"        # AI transcription
+cask "raycast"             # Launcher and productivity tool
+cask "alt-tab"             # Windows-style alt-tab
+cask "shottr"              # Screenshot tool
+cask "hiddenbar"           # Hide menu bar icons
+cask "meetingbar"          # Next meeting in menu bar
 
 # Applications - Utilities
-cask "google-drive"       # Cloud storage
-cask "reader"             # PDF reader
-cask "superwhisper"       # Audio transcription
+cask "google-drive"        # Cloud storage
+cask "docker"              # Containerization
+cask "postman"             # API client
+cask "stats"                # System monitor in menu bar
 
 # Applications - AI Tools
-cask "chatgpt"            # ChatGPT desktop app
-cask "claude"             # Claude desktop app
+# cask "perplexity"         # AI search - Install from Mac App Store
+cask "claude"              # AI assistant
+cask "chatgpt"             # AI assistant
+
+# Applications - Development
+cask "visual-studio-code"  # Code editor
+cask "warp"                # Modern terminal
+cask "windsurf@next"       # Windsurf IDE
+cask "figma"               # Design tool
+cask "iterm2"              # Alternative terminal
+
+# Applications - Media & Communication
+cask "spotify" # Music streaming - Uncomment if needed

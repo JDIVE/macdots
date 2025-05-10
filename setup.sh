@@ -443,7 +443,48 @@ main() {
   print_message "${BLUE}" "🔗" "Setting up dotfiles..."
   ./install.sh
 
-  print_message "${GREEN}" "🎉" "Setup complete! Your Mac is now configured with your preferred settings and software."
+  print_message "${GREEN}" "🔒" "Ensuring SSH directory exists with correct permissions..."
+  mkdir -p ~/.ssh
+  chmod 700 ~/.ssh
+
+  print_message "${GREEN}" "🚀" "Installing dotfiles..."
+  ./install.sh
+
+  # Ensure the stowed SSH config has correct permissions
+  if [ -f "~/.ssh/config" ]; then
+    print_message "${GREEN}" "🔒" "Setting permissions for ~/.ssh/config..."
+    chmod 600 ~/.ssh/config
+  fi
+
+  print_message "${GREEN}" "🎨" "Configuring macOS defaults..."
+  # Close any open System Preferences panes, to prevent them from overriding settings we’re about to change
+  osascript -e 'tell application "System Settings" to quit'
+
+  # Configure Dock settings using dockutil (after applications are installed by Brewfile)
+  print_message "${GREEN}" "⚓" "Configuring Dock..."
+  if command -v dockutil &> /dev/null; then
+    dockutil --remove all --no-restart
+    dockutil --add '/Applications/Notion.app' --no-restart # User specified
+    dockutil --add '/Applications/Notion Mail.app' --no-restart # User specified - VERIFY PATH & INSTALLATION
+    dockutil --add '/Applications/Notion Calendar.app' --no-restart # User specified
+    dockutil --add '/Applications/Arc.app' --no-restart
+    dockutil --add '/Applications/Claude.app' --no-restart # User specified - VERIFY PATH & INSTALLATION
+    dockutil --add '/System/Applications/Music.app' --no-restart # User specified
+    dockutil --add '/Applications/Superwhisper.app' --no-restart # User specified - VERIFY PATH & INSTALLATION
+    dockutil --add '/Applications/Warp.app' --no-restart # User specified
+    dockutil --add '/Applications/Readwise Reader.app' --no-restart # User specified (Readwise Reader)
+    dockutil --add '/Applications/Visual Studio Code.app' --no-restart # User specified
+    dockutil --add '/Applications/Linear.app' --no-restart # User specified (Linear) - VERIFY PATH & INSTALLATION
+    dockutil --add '/Applications/Windsurf Next.app' --no-restart # User specified - VERIFY PATH & INSTALLATION
+    # Add Downloads folder. Add other folders/stacks as needed.
+    dockutil --add '~/Downloads' --view grid --display folder --sort dateadded --no-restart
+   
+    killall Dock
+  else
+    print_message "${RED}" "⚠️" "dockutil not found. Skipping Dock configuration."
+  fi
+
+  print_message "${GREEN}" "🎉" "macOS setup complete!"
   print_message "${YELLOW}" "📝" "Note: Some changes may require a restart to take effect."
 }
 
