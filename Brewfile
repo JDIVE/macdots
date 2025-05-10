@@ -33,15 +33,9 @@ cask "font-jetbrains-mono"
 cask "font-hack-nerd-font"
 
 # Applications
-cask "google-chrome"      # Web browser
-cask "firefox"            # Web browser
+cask "arc"                # Primary web browser
+cask "google-chrome"      # Web browser for development
 cask "visual-studio-code" # Code editor
-cask "iterm2"             # Terminal
 cask "warp"               # Modern terminal
 cask "docker"             # Containerization
-cask "rectangle"          # Window manager
-cask "alfred"             # Productivity
-cask "1password"          # Password manager
 cask "raycast"            # Productivity
-cask "slack"              # Communication
-cask "zoom"               # Video conferencing
