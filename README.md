@@ -19,9 +19,34 @@ This repository contains my personal configuration files (dotfiles) for various 
 
 ## Installation
 
+### Quick Setup (New Mac)
+
+For a new Mac, you can use the setup script to install essential software and configure your environment:
+
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/macdots.git
+   git clone https://github.com/JDIVE/macdots.git
+   cd macdots
+   ```
+
+2. Run the setup script:
+   ```bash
+   ./setup.sh
+   ```
+
+The setup script will:
+- Install Homebrew (if not already installed)
+- Install essential command-line tools and applications from the Brewfile
+- Configure sensible macOS defaults
+- Set up your dotfiles using the install.sh script
+
+### Dotfiles Only
+
+If you only want to install the dotfiles without setting up software:
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/JDIVE/macdots.git
    cd macdots
    ```
 
@@ -30,15 +55,23 @@ This repository contains my personal configuration files (dotfiles) for various 
    ./install.sh
    ```
 
-The script will:
+The install script will:
 - Back up any existing configuration files
 - Use GNU Stow to create symlinks from your home directory to the files in this repository
 
 ## Requirements
 
+For the full setup:
+- macOS 10.15 or later
+- Internet connection
+- Administrator privileges
+
+For dotfiles only:
 - GNU Stow: `brew install stow`
 
 ## Customization
+
+The Brewfile contains all the software that will be installed. Feel free to edit it to add or remove packages according to your needs.
 
 Feel free to fork this repository and customize it to your needs. The structure is designed to be intuitive and easy to modify.
 
