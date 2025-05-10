@@ -460,6 +460,16 @@ main() {
   # Configure Dock settings using dockutil (after applications are installed by Brewfile)
   print_message "${GREEN}" "⚓" "Configuring Dock..."
   if command -v dockutil &> /dev/null; then
+    # Save current Dock appearance settings before modifications
+    print_message "${BLUE}" "💾" "Saving current Dock appearance settings..."
+    dock_autohide=$(defaults read com.apple.dock autohide 2>/dev/null || echo "0")
+    dock_tilesize=$(defaults read com.apple.dock tilesize 2>/dev/null || echo "48")
+    dock_orientation=$(defaults read com.apple.dock orientation 2>/dev/null || echo "bottom")
+    dock_magnification=$(defaults read com.apple.dock magnification 2>/dev/null || echo "0")
+    dock_show_recents=$(defaults read com.apple.dock show-recents 2>/dev/null || echo "1")
+    
+    # Configure Dock items
+    print_message "${BLUE}" "🔄" "Configuring Dock items..."
     dockutil --remove all --no-restart
     dockutil --add '/Applications/Notion.app' --no-restart # User specified
     dockutil --add '/Applications/Notion Mail.app' --no-restart # User specified
@@ -475,7 +485,17 @@ main() {
     dockutil --add '/Applications/Windsurf Next.app' --no-restart # User specified
     # Add Downloads folder. Add other folders/stacks as needed.
     dockutil --add '~/Downloads' --view grid --display folder --sort dateadded --no-restart
-   
+    
+    # Restore Dock appearance settings
+    print_message "${BLUE}" "🔄" "Restoring Dock appearance settings..."
+    defaults write com.apple.dock autohide -bool "$dock_autohide"
+    defaults write com.apple.dock tilesize -int "$dock_tilesize"
+    [ "$dock_orientation" != "bottom" ] && defaults write com.apple.dock orientation -string "$dock_orientation"
+    defaults write com.apple.dock magnification -bool "$dock_magnification"
+    defaults write com.apple.dock show-recents -bool "$dock_show_recents"
+    
+    # Restart Dock to apply all changes at once
+    print_message "${GREEN}" "✅" "Restarting Dock to apply changes..."
     killall Dock
   else
     print_message "${RED}" "⚠️" "dockutil not found. Skipping Dock configuration."
