@@ -1,0 +1,112 @@
+# SSH keys and sensitive files
+.ssh/id_*
+.ssh/*.key
+.ssh/*.pem
+.ssh/known_hosts
+.ssh/authorized_keys
+.ssh/jamie
+.ssh/jamie.pub
+.ssh/*_rsa*
+.ssh/*_ed25519*
+.ssh/*_dsa*
+.ssh/*_ecdsa*
+
+# macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Temporary files
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Environment files that might contain sensitive information
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+
+# Neovim specific
+.config/nvim/plugin/packer_compiled.lua
+.config/nvim/.netrwhist
+
+# Tmux plugins (usually these are git submodules, so we don't want to track them)
+.config/tmux/plugins/*
+!.config/tmux/plugins/tpm
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# History files
+.bash_history
+.zsh_history
+.zcompdump*

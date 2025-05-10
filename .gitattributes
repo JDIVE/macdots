@@ -1,0 +1,33 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Explicitly declare text files to be normalized
+*.txt text
+*.md text
+*.sh text eol=lf
+*.zsh text eol=lf
+*.bash text eol=lf
+*.zshrc text eol=lf
+*.bashrc text eol=lf
+*.json text
+*.yaml text
+*.yml text
+*.lua text
+*.vim text
+*.conf text
+*.config text
+
+# Declare binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
