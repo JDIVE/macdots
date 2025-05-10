@@ -112,4 +112,5 @@ var/
 .zsh_history
 # Ignore SSH keys but keep the directory structure
 ssh/.ssh/id_*
+ssh/.ssh/backup/
 !ssh/.ssh/.gitkeep
