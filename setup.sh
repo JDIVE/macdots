@@ -272,6 +272,75 @@ setup_macos_defaults() {
   print_message "${YELLOW}" "⚠️" "Note: Some of these changes require a logout/restart to take effect."
 }
 
+# Install Arc browser extensions
+install_arc_extensions() {
+  print_message "${BLUE}" "🧩" "Setting up Arc browser extensions..."
+
+  # Check if Arc is installed
+  if [ ! -d "/Applications/Arc.app" ]; then
+    print_message "${YELLOW}" "⚠️" "Arc browser is not installed. Skipping extension setup."
+    return
+  fi
+
+  # Arc extensions directory
+  ARC_EXTENSIONS_DIR="$HOME/Library/Application Support/Arc/User Data/Default/Extensions"
+
+  # Create extensions directory if it doesn't exist
+  mkdir -p "$ARC_EXTENSIONS_DIR"
+
+  # Function to install an extension from Chrome Web Store
+  install_extension() {
+    local extension_id=$1
+    local extension_name=$2
+
+    print_message "${BLUE}" "🔄" "Installing $extension_name..."
+
+    # Check if extension is already installed
+    if [ -d "$ARC_EXTENSIONS_DIR/$extension_id" ]; then
+      print_message "${GREEN}" "✅" "$extension_name is already installed."
+      return
+    fi
+
+    # Create a temporary directory
+    local temp_dir=$(mktemp -d)
+
+    # Download the extension from Chrome Web Store
+    curl -L "https://clients2.google.com/service/update2/crx?response=redirect&prodversion=100.0.4896.127&acceptformat=crx2,crx3&x=id%3D$extension_id%26installsource%3Dondemand%26uc" -o "$temp_dir/extension.crx"
+
+    # Create extension directory
+    mkdir -p "$ARC_EXTENSIONS_DIR/$extension_id"
+
+    # Unzip the extension
+    unzip -q "$temp_dir/extension.crx" -d "$ARC_EXTENSIONS_DIR/$extension_id"
+
+    # Clean up
+    rm -rf "$temp_dir"
+
+    print_message "${GREEN}" "✅" "$extension_name installed successfully."
+  }
+
+  # List of essential extensions to install
+  # Format: "extension_id extension_name"
+  extensions=(
+    "cjpalhdlnbpafiamejdnhcphjbkeiagm uBlock Origin"
+    "nngceckbapebfimnlniiiahkandclblb Bitwarden"
+    "eimadpbcbfnmbkopoojfekhnkhdbieeh Dark Reader"
+    "dbepggeogbaibhgnhhndojpepiihcmeb Vimium"
+    "kbfnbcaeplbcioakkpcpgfkobkghlhen Grammarly"
+    "ldgfbffkinooeloadekpmfoklnobpien Raindrop.io"
+  )
+
+  # Install each extension
+  for extension in "${extensions[@]}"; do
+    extension_id=$(echo $extension | cut -d' ' -f1)
+    extension_name=$(echo $extension | cut -d' ' -f2-)
+    install_extension "$extension_id" "$extension_name"
+  done
+
+  print_message "${GREEN}" "✅" "Arc browser extensions setup complete."
+  print_message "${YELLOW}" "📝" "Note: You may need to restart Arc browser for all extensions to take effect."
+}
+
 # Main function to run the setup
 main() {
   print_message "${BLUE}" "🚀" "Starting setup for a new Mac..."
@@ -299,10 +368,13 @@ main() {
   echo
   read -p "Configure macOS defaults? (y/n): " -n 1 -r SETUP_MACOS
   echo
+  read -p "Install Arc browser extensions? (y/n): " -n 1 -r INSTALL_ARC_EXTENSIONS
+  echo
 
   # Install selected components
   [[ $INSTALL_SOFTWARE =~ ^[Yy]$ ]] && install_software
   [[ $SETUP_MACOS =~ ^[Yy]$ ]] && setup_macos_defaults
+  [[ $INSTALL_ARC_EXTENSIONS =~ ^[Yy]$ ]] && install_arc_extensions
 
   # Run the dotfiles install script
   print_message "${BLUE}" "🔗" "Setting up dotfiles..."
