@@ -30,7 +30,7 @@ brew "rsync"          # Fast incremental file transfer
 brew "ncdu"           # Disk usage analyzer with ncurses interface
 brew "diff-so-fancy"  # Good-looking diffs
 brew "p7zip"          # 7-Zip (for .7z in extract function)
-brew "unrar"          # Unarchiver for .rar files (for extract function)
+brew "unar"           # Universal archive extraction tool (replacement for unrar)
 brew "dockutil"       # Command line tool for managing Dock items
 
 # Development tools
@@ -66,7 +66,7 @@ cask "notion-calendar"     # Calendar app (formerly Cron)
 cask "notion-mail"         # Email client for Notion
 cask "bitwarden"           # Password manager
 cask "linear-linear"       # Project management
-cask "readwise-reader"     # Read-it-later and RSS
+cask "reader"              # Readwise Reader (Read-it-later and RSS)
 cask "superwhisper"        # AI transcription
 cask "raycast"             # Launcher and productivity tool
 cask "alt-tab"             # Windows-style alt-tab
