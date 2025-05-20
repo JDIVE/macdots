@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # setup.sh - Initial setup script for a new Mac
 # This script installs essential software and configures the system
+set -euo pipefail
 # IMPORTANT: This script should NOT be run with sudo
 
 # Colors for output
@@ -292,8 +293,8 @@ install_arc_extensions() {
 
   # Install each extension
   for extension in "${extensions[@]}"; do
-    extension_id=$(echo $extension | cut -d' ' -f1)
-    extension_name=$(echo $extension | cut -d' ' -f2-)
+    extension_id=$(echo "$extension" | cut -d' ' -f1)
+    extension_name=$(echo "$extension" | cut -d' ' -f2-)
     install_extension "$extension_id" "$extension_name"
   done
 
@@ -506,4 +507,4 @@ main() {
 }
 
 # Run the main function
-main
+main "$@"

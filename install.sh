@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -65,13 +65,14 @@ for other_file in .gitconfig .bashrc; do # Add other files here if necessary
 done
 
 # Stow it all
-STOW_PACKAGES="home config ssh" # .config will be treated as 'config' by stow
-print_message "${BLUE}" "🔗" "Stowing packages: $STOW_PACKAGES from $(pwd) into ~"
-stow -v -t ~ $STOW_PACKAGES
+STOW_PACKAGES=(home config ssh) # .config will be treated as 'config' by stow
+print_message "${BLUE}" "🔗" "Stowing packages: ${STOW_PACKAGES[*]} from $(pwd) into ~"
+stow -v -t ~ "${STOW_PACKAGES[@]}"
 
 # Source the new .zshrc if using zsh
 if [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ] || [ "$SHELL" = "/usr/local/bin/zsh" ]; then
   print_message "${BLUE}" "🔄" "Sourcing new .zshrc"
+  # shellcheck disable=SC1090
   source "$HOME/.zshrc" 2>/dev/null || true
 fi
 
