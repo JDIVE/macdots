@@ -2,7 +2,7 @@
 .ssh/id_*
 .ssh/*.key
 .ssh/*.pem
-.ssh/known_hosts
+.ssh/known_hosts*
 .ssh/authorized_keys
 .ssh/jamie
 .ssh/jamie.pub
@@ -114,4 +114,4 @@ var/
 ssh/.ssh/id_*
 ssh/.ssh/backup/
 !ssh/.ssh/.gitkeep
-ssh/.ssh/known_hosts
+ssh/.ssh/known_hosts*
