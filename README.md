@@ -54,9 +54,10 @@ For a new Mac, you can use the setup script to install essential software and co
    ```
 
 2. Run the setup script:
-   **Note:** This script requires superuser privileges to install system-wide tools and configure certain macOS settings. Please run it with `sudo`.
+   **Note:** Run this script as your regular user. It will request `sudo`
+   privileges when needed, so do **not** invoke it with `sudo` yourself.
    ```bash
-   sudo ./setup.sh
+   ./setup.sh
    ```
 
 The setup script will:
