@@ -9,6 +9,9 @@ export PATH="/Users/jamie/.codeium/windsurf/bin:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# Tmux theme - Choose 'onedark' or 'nord' for your preferred theme
+export TMUX_THEME="onedark" # Change to 'nord' if you prefer that theme
+
 # FZF configuration
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview 'bat --color=always {}'"
 
@@ -95,6 +98,7 @@ alias path="echo $PATH | tr ':' '\n'"                          # Print PATH in r
 alias ports="sudo lsof -iTCP -sTCP:LISTEN -n -P"              # Show open ports
 alias myip="curl -s https://api.ipify.org && echo"            # Show public IP address
 alias localip="ipconfig getifaddr en0"                        # Show local IP address
+alias c="clear"                                               # Clear terminal
 
 # Docker shortcuts
 alias dc="docker-compose"
@@ -116,7 +120,7 @@ alias help="tldr"                                              # Simplified help
 alias http="httpie"                                            # HTTP client
 alias top="btop"                                               # Better top
 alias find="fd"                                                # Better find
-alias cd="z"                                                   # Use zoxide for better cd
+# alias cd="z"                                                   # Use zoxide for better cd (commented out to avoid Claude Code issues)
 
 # macOS specific
 alias showfiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
@@ -162,6 +166,11 @@ weather() {
   curl -s "wttr.in/$1?m1"
 }
 
+# Launch Claude Code inside ~/assistant, then pop back to where you were
+assist() {
+  (cd ~/assistant && claude "$@")
+}
+
 # Initialize zoxide (better cd command)
 if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
@@ -181,9 +190,6 @@ elif command -v fzf &> /dev/null; then
   fi
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # Conditional compinit initialization (skip for Warp Terminal)
 if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
   autoload -Uz compinit
@@ -196,14 +202,17 @@ if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
   # compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump-$ZSH_VERSION"
 fi
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-ZSH_THEME="robbyrussell"
+# ZSH Plugins from Claude Code Docker Environment
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=(~/.zsh/zsh-completions/src $fpath)
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git)
+# Initialize Oh My Posh prompt
+if command -v oh-my-posh &> /dev/null; then
+  eval "$(oh-my-posh init zsh --config /Users/jamie/macdots/config/ohmyposh/zen.toml)"
+fi
 
-source $ZSH/oh-my-zsh.sh
+# Added by Windsurf
+export PATH="/Users/jamie/.codeium/windsurf/bin:$PATH"
+alias cc="claude"
+alias cost="npx ccusage@latest"
