@@ -1,9 +1,5 @@
 # Environment variables
-export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
-
-# Added by Windsurf - Next
-export PATH="/Users/jamie/.codeium/windsurf/bin:$PATH"
 
 # Default editor
 export EDITOR="nvim"
@@ -75,13 +71,11 @@ alias gst="git stash"
 alias gstp="git stash pop"
 alias gsts="git stash show --text"
 
-
-
 # System shortcuts
 alias zshrc="$EDITOR ~/.zshrc"                                 # Quick edit zshrc
 alias reload="source ~/.zshrc"                                 # Reload zshrc
 alias brewup="brew update && brew upgrade && brew cleanup"     # Update Homebrew
-alias path="echo $PATH | tr ':' '\n'"                          # Print PATH in readable format
+alias path="echo $PATH | tr ':' '\\n'"                          # Print PATH in readable format
 alias ports="sudo lsof -iTCP -sTCP:LISTEN -n -P"              # Show open ports
 alias myip="curl -s https://api.ipify.org && echo"            # Show public IP address
 alias localip="ipconfig getifaddr en0"                        # Show local IP address
@@ -110,7 +104,6 @@ alias find="fd"                                                # Better find
 alias showfiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder"
 alias hidefiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder"
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder" # Flush DNS cache
-# alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl" # Empty trash and system logs - REMOVED DUE TO RISK
 
 # Quick folder navigation
 alias dev="cd ~/Development"
@@ -145,16 +138,10 @@ extract() {
   fi
 }
 
-# Weather in terminal
-weather() {
-  curl -s "wttr.in/$1?m1"
-}
-
 # Launch Claude Code inside ~/assistant, then pop back to where you were
 assist() {
   (cd ~/assistant && claude "$@")
 }
-
 
 # Initialize fzf
 if [ -f ~/.fzf.zsh ]; then
@@ -185,9 +172,3 @@ fi
 # ZSH Plugins via Homebrew
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
-# Added by Windsurf
-export PATH="/Users/jamie/.codeium/windsurf/bin:$PATH"
-alias cc="claude"
-alias cost="npx ccusage@latest"
