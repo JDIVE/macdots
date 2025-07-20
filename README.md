@@ -9,12 +9,14 @@ This repository contains my personal configuration files (dotfiles) for various 
 ## What's Included
 
 ### Configuration Files
+
 - `home/.zshrc`: Enhanced shell configuration with:
   - Modern command-line tool aliases (eza, bat, fd, etc.)
   - Extensive Git aliases and configurations
   - Docker shortcuts
   - Utility functions (extract, mkcd, weather, etc.)
-  - Tool initializations (zoxide, fzf)
+  - Tool initializations (fzf)
+  - Shell enhancements (zsh-autosuggestions, zsh-syntax-highlighting)
 - `config/`: (Stored in `macdots/config/`) Configuration files for various tools:
   - `nvim/`: Neovim configuration
   - `tmux/`: Tmux configuration with plugins
@@ -23,6 +25,7 @@ This repository contains my personal configuration files (dotfiles) for various 
 - `ssh/config`: (Stored in `macdots/ssh/config`) SSH configuration (without private keys)
 
 ### Scripts
+
 - `install.sh`: Dotfiles installation script with:
   - Automatic backup of existing configurations
   - GNU Stow integration for symlink management of specific packages (`home`, `config`, `ssh`)
@@ -34,12 +37,15 @@ This repository contains my personal configuration files (dotfiles) for various 
   - Runs the dotfiles installation
 
 ### Package Management
+
 - `Brewfile`: Curated list of software organized by category:
-  - Modern command-line tools (bat, eza, ripgrep, fd, etc.)
-  - Development tools (node, python, lua, etc.)
-  - Container tools (Docker Desktop)
-  - Applications (Arc, VS Code, Warp, etc.)
-  - Productivity tools (Raycast, Notion, etc.)
+  - Core command-line tools (bat, btop, curl, eza, fd, fzf, gh, jq, neovim, ripgrep, stow, tmux, wget, yq)
+  - Shell enhancements (zsh-autosuggestions, zsh-syntax-highlighting)
+  - Development tools (node, uv, tree-sitter)
+  - Container tools (Docker Desktop, docker-compose)
+  - Applications (Visual Studio Code, Warp, Zed, Google Chrome)
+  - Productivity tools (Raycast, ChatGPT, Claude, Google Drive, Discord)
+  - Fonts (Fira Code, JetBrains Mono, Hack Nerd Font)
 
 ## Installation
 
@@ -64,7 +70,7 @@ The setup script will:
 - Install essential command-line tools and applications from the Brewfile
 - Configure sensible macOS defaults
 - Set up Git with your name and email (interactive prompt)
-- Install Arc browser extensions (Bitwarden and Raycast Companion)
+- Install development and productivity applications
 - Set up your dotfiles using the install.sh script
 
 ### Dotfiles Only
@@ -88,17 +94,20 @@ The install script will:
 
 ## Requirements
 
-### For the full setup:
+### For the full setup
+
 - macOS 10.15 or later
 - Internet connection
 - Administrator privileges
 
-### For dotfiles only:
+### For dotfiles only
+
 - GNU Stow: `brew install stow`
 
 ## Key Features
 
 ### Modern Command Line Tools
+
 This dotfiles repository integrates many modern replacements for traditional Unix tools:
 
 | Traditional Tool | Modern Replacement | Description |
@@ -107,28 +116,42 @@ This dotfiles repository integrates many modern replacements for traditional Uni
 | `cat` | `bat` | Syntax highlighting and Git integration |
 | `find` | `fd` | Faster and simpler syntax |
 | `grep` | `ripgrep` | Faster and respects .gitignore |
-| `cd` | `zoxide` | Smarter directory navigation that learns your habits |
 | `top` | `btop` | Interactive resource monitor |
-| `man` | `tldr` | Simplified, practical command examples |
-| `diff` | `git-delta` | Better diffs with syntax highlighting |
+| `python pip` | `uv` | Extremely fast Python package installer and resolver |
+|| `curl/wget` | `curl/wget` | HTTP/file transfer tools |
 
 ### Enhanced Git Experience
+
 - Comprehensive Git aliases for common operations
-- Integration with `lazygit` for terminal UI
-- Better diffs with `git-delta`
+- GitHub CLI integration with `gh`
+- JSON/YAML processing with `jq` and `yq`
+- Fuzzy finding with `fzf`
 - Improved Git status information in prompts and file listings
 
 ### Docker Integration
+
 - Docker Desktop for Mac
 - Useful Docker aliases for common operations
 - Docker Compose support
 
-### Arc Browser Enhancement
-- Automated installation of essential extensions:
-  - Bitwarden: Password manager
-  - Raycast Companion: Integration with Raycast launcher
-- Smart installation that respects Homebrew installation order
-- Easy to customize with your preferred extensions
+### Development Environment
+
+- **Visual Studio Code**: Primary code editor with extensions
+- **Neovim**: Terminal-based text editor with modern configuration
+- **Warp**: Modern terminal with AI features (preview version)
+- **Zed**: Fast, collaborative code editor (preview version)
+- **Tmux**: Terminal multiplexer for session management
+- **Tree-sitter**: Advanced syntax highlighting and code parsing
+- **Node.js**: JavaScript runtime for development
+
+### Productivity Applications
+
+- **Raycast**: Powerful launcher and productivity tool
+- **ChatGPT**: OpenAI desktop application for AI assistance
+- **Claude**: Anthropic AI assistant desktop application
+- **Google Chrome**: Web browser
+- **Google Drive**: Cloud storage integration
+- **Discord**: Communication and community platform
 
 ## Customization
 
@@ -152,10 +175,8 @@ Feel free to fork this repository and customize it to your needs. The stow packa
 | `myip` | Show your public IP address |
 | `localip` | Show your local IP address |
 | `brewup` | Update Homebrew and all packages |
-| `lg` | Launch lazygit terminal UI |
 | `lt` | List files in tree view |
 | `cat <file>` | View file with syntax highlighting |
-| `help <command>` | Show simplified help for a command |
 
 ### Git Workflow
 
