@@ -202,10 +202,9 @@ if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
   # compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump-$ZSH_VERSION"
 fi
 
-# ZSH Plugins from Claude Code Docker Environment
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fpath=(~/.zsh/zsh-completions/src $fpath)
+# ZSH Plugins via Homebrew
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Initialize Oh My Posh prompt
 if command -v oh-my-posh &> /dev/null; then
