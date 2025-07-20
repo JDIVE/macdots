@@ -1,0 +1,471 @@
+{
+  "tool_config_map": {
+    "nvim": [
+      {
+        "line": 9,
+        "type": "env_var",
+        "content": "export EDITOR=\"nvim\""
+      },
+      {
+        "line": 10,
+        "type": "env_var", 
+        "content": "export VISUAL=\"nvim\""
+      }
+    ],
+    "bat": [
+      {
+        "line": 16,
+        "type": "env_var",
+        "content": "export FZF_DEFAULT_OPTS=\"--height 40% --layout=reverse --border --preview 'bat --color=always {}'\""
+      },
+      {
+        "line": 116,
+        "type": "alias",
+        "content": "alias cat=\"bat --paging=never\""
+      },
+      {
+        "line": 117,
+        "type": "alias",
+        "content": "alias preview=\"bat --color=always\""
+      }
+    ],
+    "eza": [
+      {
+        "line": 35,
+        "type": "alias",
+        "content": "alias ls=\"eza --color=auto\""
+      },
+      {
+        "line": 36,
+        "type": "alias",
+        "content": "alias ll=\"eza -la --git --icons\""
+      },
+      {
+        "line": 37,
+        "type": "alias",
+        "content": "alias la=\"eza -a --icons\""
+      },
+      {
+        "line": 38,
+        "type": "alias",
+        "content": "alias l=\"eza -l --git --icons\""
+      },
+      {
+        "line": 39,
+        "type": "alias",
+        "content": "alias lt=\"eza -T --icons --git-ignore\""
+      },
+      {
+        "line": 40,
+        "type": "alias",
+        "content": "alias lta=\"eza -Ta --icons\""
+      },
+      {
+        "line": 41,
+        "type": "alias",
+        "content": "alias lg=\"eza -l --git --icons --git-ignore\""
+      },
+      {
+        "line": 44,
+        "type": "conditional_check",
+        "content": "if ! command -v eza &> /dev/null; then"
+      }
+    ],
+    "lazygit": [
+      {
+        "line": 79,
+        "type": "conditional_check",
+        "content": "if command -v lazygit &> /dev/null; then"
+      },
+      {
+        "line": 80,
+        "type": "alias",
+        "content": "alias lg=\"lazygit\""
+      }
+    ],
+    "delta": [
+      {
+        "line": 84,
+        "type": "conditional_check",
+        "content": "if command -v delta &> /dev/null; then"
+      },
+      {
+        "line": 85,
+        "type": "git_config",
+        "content": "git config --global core.pager \"delta\""
+      },
+      {
+        "line": 86,
+        "type": "git_config",
+        "content": "git config --global interactive.diffFilter \"delta --color-only\""
+      }
+    ],
+    "ncdu": [
+      {
+        "line": 118,
+        "type": "alias",
+        "content": "alias du=\"ncdu --color dark -rr -x\""
+      }
+    ],
+    "tldr": [
+      {
+        "line": 119,
+        "type": "alias",
+        "content": "alias help=\"tldr\""
+      }
+    ],
+    "httpie": [
+      {
+        "line": 120,
+        "type": "alias",
+        "content": "alias http=\"httpie\""
+      }
+    ],
+    "btop": [
+      {
+        "line": 121,
+        "type": "alias",
+        "content": "alias top=\"btop\""
+      }
+    ],
+    "fd": [
+      {
+        "line": 122,
+        "type": "alias",
+        "content": "alias find=\"fd\""
+      }
+    ],
+    "zoxide": [
+      {
+        "line": 123,
+        "type": "alias_commented",
+        "content": "# alias cd=\"z\""
+      },
+      {
+        "line": 175,
+        "type": "conditional_check",
+        "content": "if command -v zoxide &> /dev/null; then"
+      },
+      {
+        "line": 176,
+        "type": "initialization",
+        "content": "eval \"$(zoxide init zsh)\""
+      }
+    ],
+    "fzf": [
+      {
+        "line": 16,
+        "type": "env_var",
+        "content": "export FZF_DEFAULT_OPTS=\"--height 40% --layout=reverse --border --preview 'bat --color=always {}'\""
+      },
+      {
+        "line": 180,
+        "type": "conditional_source",
+        "content": "if [ -f ~/.fzf.zsh ]; then"
+      },
+      {
+        "line": 181,
+        "type": "source",
+        "content": "source ~/.fzf.zsh"
+      },
+      {
+        "line": 182,
+        "type": "conditional_check",
+        "content": "elif command -v fzf &> /dev/null; then"
+      },
+      {
+        "line": 185,
+        "type": "source",
+        "content": "source /usr/local/opt/fzf/shell/key-bindings.zsh"
+      },
+      {
+        "line": 186,
+        "type": "source",
+        "content": "source /usr/local/opt/fzf/shell/completion.zsh"
+      },
+      {
+        "line": 188,
+        "type": "source",
+        "content": "source /opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+      },
+      {
+        "line": 189,
+        "type": "source",
+        "content": "source /opt/homebrew/opt/fzf/shell/completion.zsh"
+      }
+    ],
+    "oh-my-posh": [
+      {
+        "line": 210,
+        "type": "conditional_check",
+        "content": "if command -v oh-my-posh &> /dev/null; then"
+      },
+      {
+        "line": 211,
+        "type": "initialization",
+        "content": "eval \"$(oh-my-posh init zsh --config /Users/jamie/macdots/config/ohmyposh/zen.toml)\""
+      }
+    ],
+    "claude": [
+      {
+        "line": 171,
+        "type": "function_call",
+        "content": "(cd ~/assistant && claude \"$@\")"
+      },
+      {
+        "line": 216,
+        "type": "alias",
+        "content": "alias cc=\"claude\""
+      }
+    ],
+    "brew": [
+      {
+        "line": 96,
+        "type": "alias",
+        "content": "alias brewup=\"brew update && brew upgrade && brew cleanup\""
+      }
+    ],
+    "docker": [
+      {
+        "line": 104,
+        "type": "alias",
+        "content": "alias dc=\"docker-compose\""
+      },
+      {
+        "line": 105,
+        "type": "alias",
+        "content": "alias dps=\"docker ps\""
+      },
+      {
+        "line": 106,
+        "type": "alias",
+        "content": "alias dpsa=\"docker ps -a\""
+      },
+      {
+        "line": 107,
+        "type": "alias",
+        "content": "alias dimg=\"docker images\""
+      },
+      {
+        "line": 108,
+        "type": "alias",
+        "content": "alias drmi=\"docker rmi\""
+      },
+      {
+        "line": 109,
+        "type": "alias",
+        "content": "alias drmif=\"docker rmi -f\""
+      },
+      {
+        "line": 110,
+        "type": "alias",
+        "content": "alias dstop=\"docker stop\""
+      },
+      {
+        "line": 111,
+        "type": "alias",
+        "content": "alias drm=\"docker rm\""
+      },
+      {
+        "line": 112,
+        "type": "alias",
+        "content": "alias dexec=\"docker exec -it\""
+      },
+      {
+        "line": 113,
+        "type": "alias",
+        "content": "alias dlogs=\"docker logs -f\""
+      }
+    ],
+    "git": [
+      {
+        "line": 52,
+        "type": "alias",
+        "content": "alias g=\"git\""
+      },
+      {
+        "line": 53,
+        "type": "alias",
+        "content": "alias gs=\"git status -sb\""
+      },
+      {
+        "line": 54,
+        "type": "alias",
+        "content": "alias ga=\"git add\""
+      },
+      {
+        "line": 55,
+        "type": "alias",
+        "content": "alias gaa=\"git add --all\""
+      },
+      {
+        "line": 56,
+        "type": "alias",
+        "content": "alias gc=\"git commit\""
+      },
+      {
+        "line": 57,
+        "type": "alias",
+        "content": "alias gcm=\"git commit -m\""
+      },
+      {
+        "line": 58,
+        "type": "alias",
+        "content": "alias gca=\"git commit --amend\""
+      },
+      {
+        "line": 59,
+        "type": "alias",
+        "content": "alias gp=\"git push\""
+      },
+      {
+        "line": 60,
+        "type": "alias",
+        "content": "alias gpf=\"git push --force-with-lease\""
+      },
+      {
+        "line": 61,
+        "type": "alias",
+        "content": "alias gl=\"git pull\""
+      },
+      {
+        "line": 62,
+        "type": "alias",
+        "content": "alias gf=\"git fetch --all --prune\""
+      },
+      {
+        "line": 63,
+        "type": "alias",
+        "content": "alias gd=\"git diff\""
+      },
+      {
+        "line": 64,
+        "type": "alias",
+        "content": "alias gds=\"git diff --staged\""
+      },
+      {
+        "line": 65,
+        "type": "alias",
+        "content": "alias gco=\"git checkout\""
+      },
+      {
+        "line": 66,
+        "type": "alias",
+        "content": "alias gcb=\"git checkout -b\""
+      },
+      {
+        "line": 67,
+        "type": "alias",
+        "content": "alias gb=\"git branch\""
+      },
+      {
+        "line": 68,
+        "type": "alias",
+        "content": "alias gba=\"git branch -a\""
+      },
+      {
+        "line": 69,
+        "type": "alias",
+        "content": "alias gbd=\"git branch -d\""
+      },
+      {
+        "line": 70,
+        "type": "alias",
+        "content": "alias gbD=\"git branch -D\""
+      },
+      {
+        "line": 71,
+        "type": "alias",
+        "content": "alias glog=\"git log --oneline --decorate --graph\""
+      },
+      {
+        "line": 72,
+        "type": "alias",
+        "content": "alias gloga=\"git log --oneline --decorate --graph --all\""
+      },
+      {
+        "line": 73,
+        "type": "alias",
+        "content": "alias grb=\"git rebase\""
+      },
+      {
+        "line": 74,
+        "type": "alias",
+        "content": "alias gst=\"git stash\""
+      },
+      {
+        "line": 75,
+        "type": "alias",
+        "content": "alias gstp=\"git stash pop\""
+      },
+      {
+        "line": 76,
+        "type": "alias",
+        "content": "alias gsts=\"git stash show --text\""
+      },
+      {
+        "line": 85,
+        "type": "git_config",
+        "content": "git config --global core.pager \"delta\""
+      },
+      {
+        "line": 86,
+        "type": "git_config",
+        "content": "git config --global interactive.diffFilter \"delta --color-only\""
+      },
+      {
+        "line": 87,
+        "type": "git_config",
+        "content": "git config --global delta.navigate true"
+      },
+      {
+        "line": 88,
+        "type": "git_config",
+        "content": "git config --global delta.light false"
+      },
+      {
+        "line": 89,
+        "type": "git_config",
+        "content": "git config --global delta.line-numbers true"
+      },
+      {
+        "line": 90,
+        "type": "git_config",
+        "content": "git config --global delta.side-by-side true"
+      }
+    ],
+    "curl": [
+      {
+        "line": 99,
+        "type": "alias",
+        "content": "alias myip=\"curl -s https://api.ipify.org && echo\""
+      },
+      {
+        "line": 166,
+        "type": "function_call",
+        "content": "curl -s \"wttr.in/$1?m1\""
+      }
+    ],
+    "npx": [
+      {
+        "line": 217,
+        "type": "alias",
+        "content": "alias cost=\"npx ccusage@latest\""
+      }
+    ]
+  },
+  "summary": {
+    "total_tools": 19,
+    "total_references": 88,
+    "categories": {
+      "aliases": 65,
+      "env_vars": 4,
+      "conditional_checks": 7,
+      "git_config": 6,
+      "initialization": 2,
+      "source": 5,
+      "function_calls": 3,
+      "commented": 1
+    }
+  }
+}

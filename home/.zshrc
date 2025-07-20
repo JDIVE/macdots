@@ -75,20 +75,7 @@ alias gst="git stash"
 alias gstp="git stash pop"
 alias gsts="git stash show --text"
 
-# Use lazygit if available
-if command -v lazygit &> /dev/null; then
-  alias lg="lazygit"
-fi
 
-# Use git-delta for better diffs if available
-if command -v delta &> /dev/null; then
-  git config --global core.pager "delta"
-  git config --global interactive.diffFilter "delta --color-only"
-  git config --global delta.navigate true
-  git config --global delta.light false
-  git config --global delta.line-numbers true
-  git config --global delta.side-by-side true
-fi
 
 # System shortcuts
 alias zshrc="$EDITOR ~/.zshrc"                                 # Quick edit zshrc
@@ -115,9 +102,6 @@ alias dlogs="docker logs -f"                                   # Follow containe
 # Enhanced tools aliases
 alias cat="bat --paging=never"                                 # Use bat instead of cat
 alias preview="bat --color=always"                             # Preview files with syntax highlighting
-alias du="ncdu --color dark -rr -x"                            # Better disk usage analyzer
-alias help="tldr"                                              # Simplified help pages
-alias http="httpie"                                            # HTTP client
 alias top="btop"                                               # Better top
 alias find="fd"                                                # Better find
 # alias cd="z"                                                   # Use zoxide for better cd (commented out to avoid Claude Code issues)
@@ -171,10 +155,6 @@ assist() {
   (cd ~/assistant && claude "$@")
 }
 
-# Initialize zoxide (better cd command)
-if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init zsh)"
-fi
 
 # Initialize fzf
 if [ -f ~/.fzf.zsh ]; then
@@ -206,10 +186,6 @@ fi
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Initialize Oh My Posh prompt
-if command -v oh-my-posh &> /dev/null; then
-  eval "$(oh-my-posh init zsh --config /Users/jamie/macdots/config/ohmyposh/zen.toml)"
-fi
 
 # Added by Windsurf
 export PATH="/Users/jamie/.codeium/windsurf/bin:$PATH"
