@@ -1,6 +1,6 @@
 # macOS Dotfiles
 
-My personal dotfiles for macOS, managed with GNU Stow. This repository provides a comprehensive setup for a new Mac with modern command-line tools and productivity applications.
+My personal dotfiles for macOS, managed with GNU Stow. This is a lean repository focused on essential configuration files and modern command-line tools.
 
 ## Overview
 
@@ -24,7 +24,6 @@ This repository contains my personal configuration files (dotfiles) for various 
   - `yazi/`: Yazi file manager configuration
 - `ssh/config`: (Stored in `macdots/ssh/config`) SSH configuration (without private keys)
 
-
 ### Package Management
 
 - `Brewfile`: Curated list of software organized by category:
@@ -36,59 +35,54 @@ This repository contains my personal configuration files (dotfiles) for various 
   - Productivity tools (Raycast, ChatGPT, Claude, Google Drive, Discord)
   - Fonts (Fira Code, JetBrains Mono, Hack Nerd Font)
 
-## Installation
+## Quick Setup
 
-This repository is organized into "stow packages" that can be managed with GNU Stow.
+Get started with three simple steps:
+
+1. **Clone repo** → `git clone https://github.com/JDIVE/macdots.git \u0026\u0026 cd macdots`
+2. **Install packages** → `brew bundle`
+3. **Deploy dotfiles** → `stow home config ssh`
+
+**Note**: For further system automation (macOS defaults, application settings, etc.), an external AI setup agent will handle further customizations.
+
+## Manual Installation (Detailed)
+
+If you prefer to understand each step:
 
 ### Prerequisites
 
-First, ensure you have the required tools installed:
-
-1. **Xcode Command Line Tools** (required for Homebrew):
+1. **Xcode Command Line Tools**:
    ```bash
    xcode-select --install
    ```
 
-2. **Homebrew** (package manager):
+2. **Homebrew**:
    ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
-3. **GNU Stow** (for managing symlinks):
+3. **GNU Stow**:
    ```bash
    brew install stow
    ```
 
-### Installing Dependencies
-
-Install all software dependencies using Homebrew Bundle:
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/JDIVE/macdots.git
-   cd macdots
-   ```
-
-2. Install all dependencies from the Brewfile:
-   ```bash
-   brew bundle install
-   ```
-
-### Setting Up Dotfiles
-
-Use GNU Stow to create symlinks for your dotfiles:
+### Deploy Configuration
 
 ```bash
-# Install all dotfile packages
-stow home config ssh
+# Clone the repository
+git clone https://github.com/JDIVE/macdots.git
+cd macdots
 
-# Or install them individually
-stow home    # Creates symlinks for files that go directly in ~/
-stow config  # Creates symlinks for ~/.config/ files
-stow ssh     # Creates symlinks for ~/.ssh/config
+# Install software dependencies
+brew bundle install
+
+# Create symlinks for dotfiles
+stow home config ssh
 ```
 
-This will create symlinks from your home directory to the files in this repository, allowing you to keep your dotfiles under version control.
+## Note
+
+Deleted scripts like `setup.sh` and `install.sh` can be copied or adapted from the repository history if needed.
 
 ## Requirements
 

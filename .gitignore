@@ -111,16 +111,29 @@ var/
 .bash_history
 .zsh_history
 
-# Generated/Informational artifacts (regenerated files, audit-like, scratch files)
-brewfile-audit.md
-README_dependencies_snippet.md
+# Generated audits / dumps
 homebrew-*.txt
+brewfile-audit.md
 mas-apps.txt
+dependency_sections_scratch.md
+README_dependencies_snippet.md
 *-audit.md
 *-dependencies*.md
+
+# Temporary and cache files
 *.cache
 *.tmp
 *.scratch
+*.bak
+*.orig
+
+# Editor-specific files
+.neoconf.json
+*.code-workspace
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
 # Ignore SSH keys but keep the directory structure
 ssh/.ssh/id_*
