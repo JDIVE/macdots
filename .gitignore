@@ -110,6 +110,18 @@ var/
 # History files
 .bash_history
 .zsh_history
+
+# Generated/Informational artifacts (regenerated files, audit-like, scratch files)
+brewfile-audit.md
+README_dependencies_snippet.md
+homebrew-*.txt
+mas-apps.txt
+*-audit.md
+*-dependencies*.md
+*.cache
+*.tmp
+*.scratch
+
 # Ignore SSH keys but keep the directory structure
 ssh/.ssh/id_*
 ssh/.ssh/backup/

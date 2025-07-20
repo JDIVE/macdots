@@ -24,17 +24,6 @@ This repository contains my personal configuration files (dotfiles) for various 
   - `yazi/`: Yazi file manager configuration
 - `ssh/config`: (Stored in `macdots/ssh/config`) SSH configuration (without private keys)
 
-### Scripts
-
-- `install.sh`: Dotfiles installation script with:
-  - Automatic backup of existing configurations
-  - GNU Stow integration for symlink management of specific packages (`home`, `config`, `ssh`)
-  - Colorized output and error handling
-- `setup.sh`: Complete Mac setup script that:
-  - Installs Homebrew
-  - Sets up all software from Brewfile
-  - Configures macOS defaults
-  - Runs the dotfiles installation
 
 ### Package Management
 
@@ -49,9 +38,30 @@ This repository contains my personal configuration files (dotfiles) for various 
 
 ## Installation
 
-### Quick Setup (New Mac)
+This repository is organized into "stow packages" that can be managed with GNU Stow.
 
-For a new Mac, you can use the setup script to install essential software and configure your environment:
+### Prerequisites
+
+First, ensure you have the required tools installed:
+
+1. **Xcode Command Line Tools** (required for Homebrew):
+   ```bash
+   xcode-select --install
+   ```
+
+2. **Homebrew** (package manager):
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+3. **GNU Stow** (for managing symlinks):
+   ```bash
+   brew install stow
+   ```
+
+### Installing Dependencies
+
+Install all software dependencies using Homebrew Bundle:
 
 1. Clone this repository:
    ```bash
@@ -59,50 +69,33 @@ For a new Mac, you can use the setup script to install essential software and co
    cd macdots
    ```
 
-2. Run the setup script:
-   **Note:** This script requires superuser privileges to install system-wide tools and configure certain macOS settings. Please run it with `sudo`.
+2. Install all dependencies from the Brewfile:
    ```bash
-   sudo ./setup.sh
+   brew bundle install
    ```
 
-The setup script will:
-- Install Homebrew (if not already installed)
-- Install essential command-line tools and applications from the Brewfile
-- Configure sensible macOS defaults
-- Set up Git with your name and email (interactive prompt)
-- Install development and productivity applications
-- Set up your dotfiles using the install.sh script
+### Setting Up Dotfiles
 
-### Dotfiles Only
+Use GNU Stow to create symlinks for your dotfiles:
 
-If you only want to install the dotfiles without setting up software:
+```bash
+# Install all dotfile packages
+stow home config ssh
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/JDIVE/macdots.git
-   cd macdots
-   ```
+# Or install them individually
+stow home    # Creates symlinks for files that go directly in ~/
+stow config  # Creates symlinks for ~/.config/ files
+stow ssh     # Creates symlinks for ~/.ssh/config
+```
 
-2. Run the installation script:
-   ```bash
-   ./install.sh
-   ```
-
-The install script will:
-- Back up any existing configuration files
-- Use GNU Stow to create symlinks from your home directory to the files within the `home`, `config`, and `ssh` packages in this repository
+This will create symlinks from your home directory to the files in this repository, allowing you to keep your dotfiles under version control.
 
 ## Requirements
 
-### For the full setup
-
 - macOS 10.15 or later
 - Internet connection
-- Administrator privileges
-
-### For dotfiles only
-
 - GNU Stow: `brew install stow`
+- Homebrew (for installing software dependencies)
 
 ## Key Features
 
@@ -159,7 +152,7 @@ The repository is designed to be easily customizable:
 
 - **Brewfile**: Edit to add or remove software packages
 - **home/.zshrc**: Modify aliases and functions to suit your workflow
-- **setup.sh**: Adjust macOS defaults to your preferences
+- **Configuration files**: Edit any dotfiles in the `home/`, `config/`, or `ssh/` directories to suit your preferences
 
 Feel free to fork this repository and customize it to your needs. The stow package structure (`home/`, `config/`, `ssh/`) mirrors your home directory, making it intuitive to understand and modify.
 
