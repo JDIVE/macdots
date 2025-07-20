@@ -21,8 +21,7 @@ This repository contains my personal configuration files (dotfiles) for various 
   - `nvim/`: Neovim configuration
   - `tmux/`: Tmux configuration with plugins
   - `gh/`: GitHub CLI configuration
-  - `yazi/`: Yazi file manager configuration
-- `ssh/config`: (Stored in `macdots/ssh/config`) SSH configuration (without private keys)
+- `ssh/.ssh/config`: (Stored in `macdots/ssh/.ssh/config`) SSH configuration
 
 ### Package Management
 
@@ -80,9 +79,6 @@ brew bundle install
 stow home config ssh
 ```
 
-## Note
-
-Deleted scripts like `setup.sh` and `install.sh` can be copied or adapted from the repository history if needed.
 
 ## Requirements
 
@@ -114,6 +110,10 @@ This dotfiles repository integrates many modern replacements for traditional Uni
 - JSON/YAML processing with `jq` and `yq`
 - Fuzzy finding with `fzf`
 - Improved Git status information in prompts and file listings
+
+### Shell Enhancement
+
+- **Zsh enhancements**: Autosuggestions and syntax highlighting
 
 ### Docker Integration
 
