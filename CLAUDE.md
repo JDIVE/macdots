@@ -10,14 +10,15 @@ This is a personal dotfiles repository for macOS that provides a clean, modern c
 
 ### Setup and Installation
 ```bash
-# Install all packages from Brewfile
-brew bundle
+# Automated setup (recommended)
+./scripts/install-brew-packages.sh    # Install Homebrew packages
+./scripts/setup-dotfiles.sh          # Create symlinks with stow
+./scripts/setup-git.sh               # Configure Git user settings
+./scripts/install-tmux-plugins.sh    # Set up tmux plugins
 
-# Create symlinks for configurations (use from repository root)
-stow home config ssh
-
-# Update all Homebrew packages
-brew update && brew upgrade && brew cleanup
+# Manual setup (alternative)
+brew bundle                          # Install packages from Brewfile
+stow home config ssh                 # Create symlinks manually
 ```
 
 ### Development Workflow
