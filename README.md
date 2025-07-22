@@ -42,8 +42,6 @@ Get started with three simple steps:
 2. **Install packages** → `brew bundle`
 3. **Deploy dotfiles** → `stow home config ssh`
 
-**Note**: For further system automation (macOS defaults, application settings, etc.), an external AI setup agent will handle further customizations.
-
 ## Manual Installation (Detailed)
 
 If you prefer to understand each step:
@@ -78,15 +76,6 @@ brew bundle install
 # Create symlinks for dotfiles
 stow home config ssh
 ```
-
-
-## Requirements
-
-- macOS 10.15 or later
-- Internet connection
-- GNU Stow: `brew install stow`
-- Homebrew (for installing software dependencies)
-
 ## Key Features
 
 ### Modern Command Line Tools
@@ -199,15 +188,6 @@ dexec container_name bash
 # Follow container logs
 dlogs container_name
 ```
-
-## Acknowledgments
-
-This dotfiles repository was inspired by and borrows from:
-
-- [Modern Unix Tools](https://github.com/ibraheemdev/modern-unix)
-- [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
-- [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles)
-- [Awesome Dotfiles](https://github.com/webpro/awesome-dotfiles)
 
 ## License
 
