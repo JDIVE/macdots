@@ -20,6 +20,7 @@ brew "zsh-syntax-highlighting"       # Syntax highlighting for zsh
 
 # Development tools
 brew "node"           # JavaScript runtime
+brew "python@3.12"    # Python runtime
 brew "uv"             # Extremely fast Python package installer and resolver, written in Rust
 brew "tree-sitter"    # Parser generator tool
 
@@ -45,6 +46,7 @@ cask "google-chrome"         # Web browser
 
 # Applications - Utilities
 cask "google-drive"          # Cloud storage
+cask "bitwarden"             # Password manager
 
 # Applications - Development
 cask "visual-studio-code"    # Code editor
