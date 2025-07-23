@@ -40,6 +40,7 @@ cask "discord"               # Chat and VOIP
 cask "raycast"               # Launcher and productivity tool
 cask "chatgpt"               # OpenAI ChatGPT desktop
 cask "claude"                # Anthropic Claude desktop
+cask "reader"                # RSS reader and read-later app
 
 # Applications - Browsers
 cask "google-chrome"         # Web browser
