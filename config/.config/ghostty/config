@@ -1,0 +1,30 @@
+# Theme
+theme = catppuccin-mocha
+
+# Font
+font-family = "Hack Nerd Font"
+font-size = 16
+font-thicken = true
+font-feature = -liga
+
+# macOS
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+
+# Behavior
+scrollback-limit = 100000
+confirm-close-surface = false
+
+# Cursor
+cursor-style-blink = true
+
+# Selection
+selection-background = #44475a
+selection-foreground = #f8f8f2
+
+# Appearance (optional)
+# background-opacity = 0.90
+# background-blur-radius = 20
+alpha-blending = native
+mouse-hide-while-typing = true
+macos-titlebar-proxy-icon = hidden
