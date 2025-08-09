@@ -17,6 +17,7 @@ brew "wget"           # Internet file retriever
 brew "yq"             # YAML processor
 brew "zsh-autosuggestions"           # Fish-style autosuggestions for zsh
 brew "zsh-syntax-highlighting"       # Syntax highlighting for zsh
+brew "starship"        # Cross-shell prompt
 
 # Development tools
 brew "node"           # JavaScript runtime

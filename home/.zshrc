@@ -171,4 +171,77 @@ fi
 
 # ZSH Plugins via Homebrew
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Append accept widgets AFTER plugin loads so we keep its defaults
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=('accept-or-complete' 'accept-or-right' 'fzf-completion' 'expand-or-complete' 'forward-char' 'end-of-line' 'vi-forward-char' 'vi-end-of-line')
+# Rebind widgets so new entries above take effect immediately
+typeset -f _zsh_autosuggest_bind_widgets > /dev/null 2>&1 && _zsh_autosuggest_bind_widgets
+
+# Make Tab and Right Arrow accept autosuggestions when present, otherwise do normal actions
+if [[ -o interactive ]]; then
+  accept-or-complete() {
+    # If a suggestion is displayed, insert it directly
+    if [[ -n "$POSTDISPLAY" ]]; then
+      LBUFFER+="$POSTDISPLAY"
+      if zle -l | grep -qx autosuggest-clear; then
+        zle autosuggest-clear
+      else
+        POSTDISPLAY=""
+      fi
+      return
+    fi
+    # Otherwise do normal completion
+    if zle -l | grep -qx fzf-completion; then
+      zle fzf-completion
+    else
+      zle expand-or-complete
+    fi
+  }
+  zle -N accept-or-complete
+  bindkey '^I' accept-or-complete
+  bindkey -M viins '^I' accept-or-complete
+  bindkey -M emacs '^I' accept-or-complete
+
+  accept-or-right() {
+    if [[ -n "$POSTDISPLAY" ]]; then
+      LBUFFER+="$POSTDISPLAY"
+      if zle -l | grep -qx autosuggest-clear; then
+        zle autosuggest-clear
+      else
+        POSTDISPLAY=""
+      fi
+      return
+    fi
+    zle vi-forward-char
+  }
+  zle -N accept-or-right
+  bindkey '^[[C' accept-or-right
+  bindkey -M viins '^[[C' accept-or-right
+  bindkey -M emacs '^[[C' accept-or-right
+fi
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="$HOME/.local/bin:$PATH"
+
+# Initialize Starship prompt if installed
+if command -v starship > /dev/null 2>&1; then
+  # Prefer user config in ~/.config/starship.toml; fall back to repo config if present
+  export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+  if [ ! -f "$STARSHIP_CONFIG" ] && [ -f "$HOME/macdots/config/.config/starship.toml" ]; then
+    STARSHIP_CONFIG="$HOME/macdots/config/.config/starship.toml"
+  fi
+  eval "$(starship init zsh)"
+fi
+
+# Ensure key bindings are applied last (after any plugin may rebind)
+if [[ -o interactive ]]; then
+  # Rebind Tab
+  bindkey '^I' accept-or-complete
+  bindkey -M viins '^I' accept-or-complete
+  bindkey -M emacs '^I' accept-or-complete
+  # Rebind Right Arrow (both CSI and SS3 sequences)
+  bindkey '^[[C' accept-or-right
+  bindkey '^[OC' accept-or-right
+  bindkey -M viins '^[[C' accept-or-right
+  bindkey -M viins '^[OC' accept-or-right
+  bindkey -M emacs '^[[C' accept-or-right
+  bindkey -M emacs '^[OC' accept-or-right
+fi

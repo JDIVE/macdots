@@ -1,0 +1,34 @@
+# Minimal, fast Starship prompt
+# Keep it terse but informative: directory, git, duration, then prompt char
+add_newline = true
+format = "$directory$git_branch$git_status$cmd_duration$line_break$character"
+
+[directory]
+style = "bold cyan"
+truncation_length = 3
+truncate_to_repo = true
+read_only = " "
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+style = "bold red"
+# Show only when there is something interesting
+format = '([$all_status$ahead_behind]($style) )'
+
+[cmd_duration]
+min_time = 700
+format = "took [$duration]($style) "
+style = "yellow"
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+vimcmd_symbol = "[❮](bold green) "
+
+[time]
+disabled = true
+
