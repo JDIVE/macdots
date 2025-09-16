@@ -143,6 +143,11 @@ assist() {
   (cd ~/assistant && claude "$@")
 }
 
+# Launch Claude Code inside ~/.claude/, then pop back to where you were
+lyra() {
+  (cd ~/.claude/ && claude "$@")
+}
+
 # Initialize fzf
 if [ -f ~/.fzf.zsh ]; then
   source ~/.fzf.zsh
@@ -245,3 +250,10 @@ if [[ -o interactive ]]; then
   bindkey -M emacs '^[[C' accept-or-right
   bindkey -M emacs '^[OC' accept-or-right
 fi
+
+# bun completions
+[ -s "/Users/jamie/.bun/_bun" ] && source "/Users/jamie/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
