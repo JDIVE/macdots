@@ -1,5 +1,5 @@
 # Theme
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 # Font
 font-family = "Hack Nerd Font"
@@ -28,3 +28,4 @@ selection-foreground = #f8f8f2
 alpha-blending = native
 mouse-hide-while-typing = true
 macos-titlebar-proxy-icon = hidden
+keybind = shift+enter=text:\x1b\r
