@@ -4,6 +4,9 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# Lyra Personal AI Infrastructure
+export PAI_HOME="$HOME"
+
 # Tmux theme - Choose 'onedark' or 'nord' for your preferred theme
 export TMUX_THEME="onedark" # Change to 'nord' if you prefer that theme
 
