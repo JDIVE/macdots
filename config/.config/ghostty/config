@@ -11,8 +11,8 @@ font-feature = -liga
 macos-titlebar-style = hidden
 macos-option-as-alt = true
 
-# Launch with tmux - attach to "main" session or create it if it doesn't exist
-command = /opt/homebrew/bin/tmux new-session -A -s main
+# Launch with tmux - use wrapper script to ensure proper initialization
+command = /Users/jamie/.config/tmux/launch-main.sh
 
 # Behavior
 scrollback-limit = 100000
