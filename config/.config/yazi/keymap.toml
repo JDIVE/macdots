@@ -1,0 +1,10 @@
+# Yazi Keybindings Configuration
+# Customize keybindings here as needed
+# Default keybindings are available and this file can override them
+
+# Example customizations:
+# [manager]
+# keymap = [
+#   { on = [ "q" ], run = "quit", desc = "Exit the process" },
+#   { on = [ "Q" ], run = "quit --no-cwd-file", desc = "Exit without writing cwd-file" },
+# ]

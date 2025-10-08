@@ -1,0 +1,7 @@
+# Catppuccin Mocha Theme for Yazi
+# Using the flavor system
+
+[flavor]
+# Use Catppuccin Mocha for both dark and light modes
+dark = "catppuccin-mocha"
+light = "catppuccin-mocha"

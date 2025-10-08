@@ -1,0 +1,35 @@
+[manager]
+# Sort files by modified time (newest first) or natural name order
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+linemode = "size"
+show_hidden = true
+show_symlink = true
+
+[preview]
+# Enable preview pane
+tab_size = 2
+max_width = 600
+max_height = 900
+cache_dir = ""
+
+[opener]
+# File openers - customize as needed
+# edit = [
+#   { run = 'nvim "$@"', block = true, for = "unix" },
+# ]
+# play = [
+#   { run = 'mpv "$@"', orphan = true, for = "unix" },
+# ]
+# open = [
+#   { run = 'open "$@"', desc = "Open", for = "macos" },
+# ]
+
+[tasks]
+# Maximum number of concurrent tasks
+micro_workers = 5
+macro_workers = 10
+bizarre_retry = 5
+suppress_preload = false
