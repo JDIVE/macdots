@@ -9,7 +9,8 @@ export PAI_HOME="$HOME"
 
 # Claude Code authentication (uses Claude Max subscription)
 # Generate token with: claude setup-token
-# Then add: export CLAUDE_CODE_OAUTH_TOKEN="your-token-here"
+# Store in ~/.zshrc.secrets (gitignored)
+[ -f ~/.zshrc.secrets ] && source ~/.zshrc.secrets
 
 # Tmux theme - Choose 'onedark' or 'nord' for your preferred theme
 export TMUX_THEME="onedark" # Change to 'nord' if you prefer that theme
