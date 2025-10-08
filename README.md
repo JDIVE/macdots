@@ -19,9 +19,9 @@ This repository contains my personal configuration files (dotfiles) for various 
   - Shell enhancements (zsh-autosuggestions, zsh-syntax-highlighting)
 - `config/`: (Stored in `macdots/config/`) Configuration files for various tools:
   - `nvim/`: Neovim configuration
-  - `tmux/`: Tmux configuration with plugins
+  - `tmux/`: Tmux configuration with plugins and automatic session management
   - `gh/`: GitHub CLI configuration
-  - `ghostty/`: Ghostty terminal configuration
+  - `ghostty/`: Ghostty terminal configuration with tmux integration
   - `yazi/`: Yazi file manager configuration
   - `starship.toml`: Starship shell prompt configuration
 - `ssh/.ssh/config`: (Stored in `macdots/ssh/.ssh/config`) SSH configuration
@@ -124,7 +124,13 @@ This dotfiles repository integrates many modern replacements for traditional Uni
 - **Ghostty**: Modern, fast GPU-accelerated terminal emulator
 - **Warp**: Modern terminal with AI features
 - **Zed**: Fast, collaborative code editor
-- **Tmux**: Terminal multiplexer for session management
+- **Tmux**: Terminal multiplexer with automatic "main" session that creates 6 pre-configured windows:
+  1. **terminal**: General terminal workspace
+  2. **lyra**: Claude Code AI assistant
+  3. **editor**: Neovim editor
+  4. **files**: Yazi file manager
+  5. **scratch**: Scratch workspace
+  6. **btop**: System monitor
 - **Tree-sitter**: Advanced syntax highlighting and code parsing
 - **Node.js**: JavaScript runtime for development
 - **Python 3.12**: Python runtime with uv package manager
@@ -191,6 +197,30 @@ gcb feature/new-feature
 # Interactive rebase
 grb -i main
 ```
+
+### Tmux Session Management
+
+Ghostty automatically launches a tmux session called "main" with 6 pre-configured windows. The session persists between terminal launches:
+
+```bash
+# Switch between windows
+Ctrl+Space 1-6  # Jump to specific window
+Ctrl+Space n    # Next window
+Ctrl+Space p    # Previous window
+
+# Split panes
+Ctrl+Space \    # Split horizontally
+Ctrl+Space -    # Split vertically
+
+# Resize panes
+Ctrl+Space h/j/k/l  # Resize left/down/up/right
+
+# Other useful commands
+Ctrl+Space m    # Maximize/restore pane
+Ctrl+Space r    # Reload tmux config
+```
+
+The session automatically restores when you close and reopen Ghostty, preserving all your windows and panes.
 
 ### Docker Commands
 
