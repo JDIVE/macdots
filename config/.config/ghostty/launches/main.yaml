@@ -1,0 +1,7 @@
+name: main
+windows:
+  - tabs:
+      - layout:
+          cwd: ~
+          commands:
+            - exec: tmux new-session -A -s main

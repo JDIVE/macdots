@@ -8,8 +8,11 @@ font-thicken = true
 font-feature = -liga
 
 # macOS
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 macos-option-as-alt = true
+
+# Launch with tmux - attach to "main" session or create it if it doesn't exist
+command = /opt/homebrew/bin/tmux new-session -A -s main
 
 # Behavior
 scrollback-limit = 100000
