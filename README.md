@@ -129,40 +129,6 @@ This dotfiles repository integrates many modern replacements for traditional Uni
 - **Google Drive**: Cloud storage integration
 - **Discord**: Communication and community platform
 
-### Neovim + Claude Code Integration
-
-The Neovim configuration includes CodeCompanion.nvim for AI-powered coding with Claude Code via the Agent Client Protocol (ACP).
-
-**Setup on new machine:**
-
-1. Install Claude Code ACP adapter:
-   ```bash
-   bun add -g @zed-industries/claude-code-acp
-   ```
-
-2. Generate OAuth token (for Claude Max/Pro subscription):
-   ```bash
-   claude setup-token
-   ```
-   Copy the token from the output.
-
-3. Add token to `~/.zshrc` (already configured in this repo):
-   ```bash
-   export CLAUDE_CODE_OAUTH_TOKEN="your-token-here"
-   ```
-
-4. Reload shell:
-   ```bash
-   source ~/.zshrc
-   ```
-
-**Usage in Neovim:**
-- `<leader>cc` - Open Claude Code chat
-- `<leader>as` - Send selection to Claude (visual mode)
-- `<leader>aa` - Actions palette
-
-Note: Uses your Claude Max subscription (no API charges).
-
 ## Customization
 
 The repository is designed to be easily customizable:
