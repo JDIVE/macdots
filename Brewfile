@@ -18,6 +18,8 @@ brew "yq"             # YAML processor
 brew "zsh-autosuggestions"           # Fish-style autosuggestions for zsh
 brew "zsh-syntax-highlighting"       # Syntax highlighting for zsh
 brew "starship"        # Cross-shell prompt
+brew "tree"           # Directory listing in tree format
+brew "yazi"           # Blazing fast terminal file manager
 
 # Development tools
 brew "node"           # JavaScript runtime
@@ -35,23 +37,29 @@ cask "font-jetbrains-mono"
 cask "font-hack-nerd-font"
 
 # Applications - Communication
-cask "discord"               # Chat and VOIP
+cask "whatsapp"              # Messaging app
+cask "superhuman"            # Email client
 
 # Applications - Productivity
 cask "raycast"               # Launcher and productivity tool
 cask "chatgpt"               # OpenAI ChatGPT desktop
 cask "claude"                # Anthropic Claude desktop
 cask "reader"                # RSS reader and read-later app
+cask "linear-linear"         # Project management
 
 # Applications - Browsers
+cask "arc"                   # Modern web browser
 cask "google-chrome"         # Web browser
 
 # Applications - Utilities
 cask "google-drive"          # Cloud storage
 cask "bitwarden"             # Password manager
+cask "logi-options+"         # Logitech device settings
+cask "tailscale-app"         # VPN/secure networking
 
 # Applications - Development
 cask "visual-studio-code"    # Code editor
-cask "warp@preview"           # Warp terminal (preview)
-cask "zed@preview"            # Zed code editor (preview)
+cask "ghostty"               # Modern terminal emulator
+cask "warp"                  # Warp terminal
+cask "zed"                   # Zed code editor
 

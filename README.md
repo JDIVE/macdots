@@ -21,17 +21,22 @@ This repository contains my personal configuration files (dotfiles) for various 
   - `nvim/`: Neovim configuration
   - `tmux/`: Tmux configuration with plugins
   - `gh/`: GitHub CLI configuration
+  - `ghostty/`: Ghostty terminal configuration
+  - `yazi/`: Yazi file manager configuration
+  - `starship.toml`: Starship shell prompt configuration
 - `ssh/.ssh/config`: (Stored in `macdots/ssh/.ssh/config`) SSH configuration
 
 ### Package Management
 
 - `Brewfile`: Curated list of software organized by category:
-  - Core command-line tools (bat, btop, curl, eza, fd, fzf, gh, jq, neovim, ripgrep, stow, tmux, wget, yq)
-  - Shell enhancements (zsh-autosuggestions, zsh-syntax-highlighting)
-  - Development tools (node, uv, tree-sitter)
+  - Core command-line tools (bat, btop, curl, eza, fd, fzf, gh, jq, neovim, ripgrep, stow, tmux, tree, wget, yazi, yq)
+  - Shell enhancements (starship, zsh-autosuggestions, zsh-syntax-highlighting)
+  - Development tools (node, python@3.12, uv, tree-sitter)
   - Container tools (Docker Desktop, docker-compose)
-  - Applications (Visual Studio Code, Warp, Zed, Google Chrome)
-  - Productivity tools (Raycast, ChatGPT, Claude, Google Drive, Discord)
+  - Applications (Arc, Ghostty, Google Chrome, Visual Studio Code, Warp, Zed)
+  - Communication tools (WhatsApp, Superhuman)
+  - Productivity tools (Bitwarden, ChatGPT, Claude, Linear, Raycast, Reader)
+  - Utilities (Google Drive, Logi Options+, Tailscale)
   - Fonts (Fira Code, JetBrains Mono, Hack Nerd Font)
 
 ## Quick Setup
@@ -90,7 +95,9 @@ This dotfiles repository integrates many modern replacements for traditional Uni
 | `grep` | `ripgrep` | Faster and respects .gitignore |
 | `top` | `btop` | Interactive resource monitor |
 | `python pip` | `uv` | Extremely fast Python package installer and resolver |
-|| `curl/wget` | `curl/wget` | HTTP/file transfer tools |
+| File manager | `yazi` | Blazing fast terminal file manager |
+| Shell prompt | `starship` | Cross-shell customizable prompt |
+| Directory tree | `tree` | Visual directory structure display |
 
 ### Enhanced Git Experience
 
@@ -114,20 +121,29 @@ This dotfiles repository integrates many modern replacements for traditional Uni
 
 - **Visual Studio Code**: Primary code editor with extensions
 - **Neovim**: Terminal-based text editor with modern configuration
-- **Warp**: Modern terminal with AI features (preview version)
-- **Zed**: Fast, collaborative code editor (preview version)
+- **Ghostty**: Modern, fast GPU-accelerated terminal emulator
+- **Warp**: Modern terminal with AI features
+- **Zed**: Fast, collaborative code editor
 - **Tmux**: Terminal multiplexer for session management
 - **Tree-sitter**: Advanced syntax highlighting and code parsing
 - **Node.js**: JavaScript runtime for development
+- **Python 3.12**: Python runtime with uv package manager
 
 ### Productivity Applications
 
 - **Raycast**: Powerful launcher and productivity tool
 - **ChatGPT**: OpenAI desktop application for AI assistance
 - **Claude**: Anthropic AI assistant desktop application
+- **Linear**: Modern project management and issue tracking
+- **Reader**: RSS reader and read-later application
+- **Bitwarden**: Open-source password manager
+- **Arc**: Modern web browser with innovative UI
 - **Google Chrome**: Web browser
 - **Google Drive**: Cloud storage integration
-- **Discord**: Communication and community platform
+- **WhatsApp**: Messaging application
+- **Superhuman**: High-performance email client
+- **Tailscale**: VPN and secure networking
+- **Logi Options+**: Logitech device configuration
 
 ## Customization
 
