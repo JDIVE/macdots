@@ -87,6 +87,14 @@ alias ports="sudo lsof -iTCP -sTCP:LISTEN -n -P"              # Show open ports
 alias myip="curl -s https://api.ipify.org && echo"            # Show public IP address
 alias localip="ipconfig getifaddr en0"                        # Show local IP address
 alias c="clear"                                               # Clear terminal
+alias v="nvim"                                                # Quick neovim
+alias cpwd="pwd | pbcopy"                                     # Copy current directory path
+
+# Tmux shortcuts
+alias ta="tmux attach"                                        # Attach to tmux session
+alias tl="tmux ls"                                            # List tmux sessions
+alias tn="tmux new -s"                                        # New named tmux session
+alias tk="tmux kill-session -t"                               # Kill tmux session
 
 # Docker shortcuts
 alias dc="docker-compose"
@@ -150,9 +158,9 @@ assist() {
   (cd ~/assistant && claude "$@")
 }
 
-# Launch Claude Code inside ~/.claude/ with --dangerously-skip-permissions, then pop back to where you were
+# Launch Claude Code inside ~/lyra with --dangerously-skip-permissions, then pop back to where you were
 lyra() {
-  (cd ~/.claude/ && claude --dangerously-skip-permissions "$@")
+  (cd ~/lyra && claude --dangerously-skip-permissions "$@")
 }
 
 # Initialize fzf

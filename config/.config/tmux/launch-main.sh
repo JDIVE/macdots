@@ -37,7 +37,11 @@ else
   # Window 6: System Monitor (btop)
   tmux new-window -t "$SESSION:6" -n "btop"
   tmux send-keys -t "$SESSION:6" "btop" C-m
-  
+
+  # Window 7: Codex
+  tmux new-window -t "$SESSION:7" -n "codex"
+  tmux send-keys -t "$SESSION:7" "cd ~/Lyra/.claude && codex" C-m
+
   # Select first window and attach
   tmux select-window -t "$SESSION:1"
   exec tmux attach-session -t "$SESSION"

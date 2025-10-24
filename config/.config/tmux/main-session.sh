@@ -38,5 +38,9 @@ tmux send-keys -t $SESSION:5 "cd ~" C-m
 tmux new-window -t $SESSION:6 -n "btop"
 tmux send-keys -t $SESSION:6 "btop" C-m
 
+# Window 7: Codex
+tmux new-window -t $SESSION:7 -n "codex"
+tmux send-keys -t $SESSION:7 "cd ~/Lyra/.claude && codex" C-m
+
 # Select first window
 tmux select-window -t $SESSION:1
