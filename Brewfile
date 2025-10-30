@@ -1,4 +1,5 @@
 # Taps
+tap "nikitabobko/tap"
 
 # Command line tools - Core
 brew "bat"            # Cat with syntax highlighting
@@ -62,4 +63,7 @@ cask "visual-studio-code"    # Code editor
 cask "ghostty"               # Modern terminal emulator
 cask "warp"                  # Warp terminal
 cask "zed"                   # Zed code editor
+
+# Applications - Window Management
+brew "aerospace"  # Tiling window manager for macOS
 
