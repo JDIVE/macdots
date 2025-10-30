@@ -78,11 +78,11 @@ automatically-unhide-macos-hidden-apps = false
     # Maximize window (Alt + F)
     alt-f = 'fullscreen'
 
-    # Join with adjacent windows (Alt + Ctrl + H/J/K/L)
-    alt-ctrl-h = 'join-with left'
-    alt-ctrl-j = 'join-with down'
-    alt-ctrl-k = 'join-with up'
-    alt-ctrl-l = 'join-with right'
+    # Join with adjacent windows (Ctrl + H/J/K/L)
+    ctrl-h = 'join-with left'
+    ctrl-j = 'join-with down'
+    ctrl-k = 'join-with up'
+    ctrl-l = 'join-with right'
 
     # Service mode (Alt + ;)
     alt-semicolon = 'mode service'
