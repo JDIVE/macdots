@@ -50,7 +50,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
 
-    # Workspace navigation (Alt + 1-0)
+    # Workspace navigation (Alt + 1-9)
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
     alt-3 = 'workspace 3'
@@ -60,9 +60,8 @@ automatically-unhide-macos-hidden-apps = false
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
-    alt-0 = 'workspace 0'
 
-    # Move window to workspace (Alt+Shift + 1-0)
+    # Move window to workspace (Alt+Shift + 1-9)
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
     alt-shift-3 = 'move-node-to-workspace 3'
@@ -72,7 +71,6 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-7 = 'move-node-to-workspace 7'
     alt-shift-8 = 'move-node-to-workspace 8'
     alt-shift-9 = 'move-node-to-workspace 9'
-    alt-shift-0 = 'move-node-to-workspace 0'
 
     # Workspace back and forth (Alt + Tab)
     alt-tab = 'workspace-back-and-forth'
